@@ -1,4 +1,5 @@
 const express = require('express');
+const handlebars = require("express-handlebars");
 require('dotenv').config();
 const redis=require('redis');
 const redisClient = redis.createClient({
@@ -19,9 +20,30 @@ setupSession(app,redisClient);
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.engine(
+    "handlebars",
+    handlebars({ defaultLayout: "main" })
+);
+app.set("view engine", "handlebars");
+app.use(express.static("public"));
 
 //set up routes for each feature 
 app.use('/',new ViewRouter().router());
+app.get("/", (request, response) => {
+    response.render("index");
+});
+app.get("/fundiving", (request, response) => {
+    response.render("fundiving");
+});
+app.get("/course", (request, response) => {
+    response.render("course");
+});
+app.get("/instructor", (request, response) => {
+    response.render("instructor");
+});
+app.get("/faq", (request, response) => {
+    response.render("faq");
+});
 
 app.listen(port,()=>{
     console.log(`server running on port ${port}...`);
