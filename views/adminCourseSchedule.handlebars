@@ -1,0 +1,65 @@
+<script src="/js/adminCourseSchedule.js"></script>
+<div class="content-wrapper px-4 py-2">
+    <div class="content-header">
+        {{#with courseName}}
+        <h1>{{this}}</h1>
+        {{/with}}
+    </div>
+    <div class="content px-2">
+        <div class="container">
+            <h3 class="text-center">Schedule</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Instructor</th>
+                        <th scope="col">Booked Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each schedule}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{start_date}}</td>
+                        <td>{{instructor}}</td>
+                        <td>8/10</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="d-flex flex-row-reverse">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddCourse"
+                    >Add Course Schedule</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="AddCourse" tabindex="-1" aria-labelledby="AddCourseLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddCourseLabel">New Course</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="start-date" class="col-form-label">Start Date</label>
+                            <input type="date" class="form-control" id="start-date" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
