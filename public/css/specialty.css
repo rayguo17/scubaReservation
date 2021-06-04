@@ -1,0 +1,152 @@
+.specialtyContainer {
+  margin-top: 7em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.aware{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Fish-identification.jpg);
+  background-repeat: no-repeat;
+  background-size: 440px 340px;
+  object-fit: scale-down;
+}
+
+
+.nitrox{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/PADI-Nitrox.jpg);
+  background-repeat: no-repeat;
+  background-size: 450px 400px;
+  object-fit: scale-down;
+}
+
+.drySuit{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Dry-suit-Diver.jpg);
+  background-repeat: no-repeat;
+  background-size: 360px 330px;
+  object-fit: scale-down;
+}
+
+.DPV{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/dpv-specialty.jpg);
+  background-repeat: no-repeat;
+  background-size: 360px 330px;
+  object-fit: scale-down;
+}
+
+.wreck{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Wreck-Diver.jpeg);
+  background-repeat: no-repeat;
+  background-size: 490px 430px;
+  object-fit: scale-down;
+}
+
+.deep{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/deep-diver.jpeg);
+  background-repeat: no-repeat;
+  background-size: 490px 430px;
+  object-fit: scale-down;
+}
+
+.naturalist{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Underwater-Naturalist.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 300px;
+  object-fit: scale-down;
+}
+
+.night{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/night-diving.jpg);
+  background-repeat: no-repeat;
+  background-size: 480px 300px;
+  object-fit: scale-down;
+}
+
+.search{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/search.jpg);
+  background-repeat: no-repeat;
+  background-size: 450px 340px;
+  object-fit: scale-down;
+}
+
+.photographer{
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/PADI-Digital-Underwater-Photographer.jpg);
+  background-repeat: no-repeat;
+  background-size: 460px 340px;
+  object-fit: scale-down;
+}
+
+.navigation {
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Underwater-Navigator.jpg);
+  background-repeat: no-repeat;
+  background-size: 400px 360px;
+  object-fit: scale-down;
+}
+
+.buoyancy {
+  margin: 2em;
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  color: white;
+  background-image: url(/img-course/Peak-Performance-buoyancy.jpg);
+  background-repeat: no-repeat;
+  background-size: 450px 360px;
+  object-fit: scale-down;
+}
