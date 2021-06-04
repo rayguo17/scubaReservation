@@ -1,7 +1,7 @@
 {
   "name": "scubaReservation",
   "version": "1.0.0",
-  "description": "",
+  "description": "* How to setup local git repo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
     "connect-redis": "^5.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
@@ -22,5 +23,6 @@
     "passport-local": "^1.0.0",
     "pg": "^8.6.0",
     "redis": "^3.1.2"
-  }
+  },
+  "devDependencies": {}
 }
