@@ -19,7 +19,7 @@ class AdminViewRouter {
         router.get('/classroom',(req,res)=>{
             res.render('adminClassroom',{layout:'admin'});
         })
-        router.get('/course/:course_id',async (req,res)=>{
+        router.get('/course/:course_id/schedule',async (req,res)=>{
             try {
                 console.log('para',req.params);
             let course_id=req.params.course_id;
