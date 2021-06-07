@@ -1,10 +1,31 @@
 const { transformAuthInfo } = require("passport");
 
 exports.up = function(knex) {
-  return knex.schema.createTable('boat',(table)=>{
-      table.increments('id');
-      table.integer('capacity');
-      table.string('type');
+  return knex.schema.createTable('boats_schedule',(table)=>{
+        table.increments('id');
+        table.date('booking_data');
+        table.integer('booking_session');
+        table.integer('boat_id');
+        table.foreign('boat_id').references('boat.id');
+        table.integer('course_schedule_id');
+        table.integer('people');
+      })
+  }).then(()=>{
+      return knex.schema.createTable('boat',(table)=>{
+        table.increments('id');
+        table.integer('capacity');
+        table.string('type');
+      })
+  }).then(()=>{
+      return knex.schema.createTable('pool_schedule',(table)=>{
+        table.increments('id');
+        table.date('booking_data');
+        table.integer('booking_session');
+        table.integer('pool_id');
+        table.foreign('pool_id').references('pool.id');
+        table.integer('course_schedule_id');
+        table.integer('people');
+      })
   }).then(()=>{
       return knex.schema.createTable('pool',(table)=>{
           table.increments('id');
@@ -31,6 +52,8 @@ exports.up = function(knex) {
   }).then(()=>{
       return knex.schema.createTable('course_schedule',(table)=>{
           table.increments('id');
+          table.foreign('id').references('pool_schedule.course_schedule_id');
+          table.foreign('id').references('boats_schedule.course_schedule_id');
           table.date('start_date');
           table.integer('course_id');
           table.foreign('course_id').references('course.id');
