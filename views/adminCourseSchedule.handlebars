@@ -1,65 +1,208 @@
 <script src="/js/adminCourseSchedule.js"></script>
+{{!--
+<link rel="stylesheet" href="/css/adminCourseSchedule.css"> --}}
 <div class="content-wrapper px-4 py-2">
+    <div class="marker" id="{{class_course_id}}"></div>
     <div class="content-header">
-        {{#with courseName}}
-        <h1>{{this}}</h1>
-        {{/with}}
+
     </div>
-    <div class="content px-2">
-        <div class="container">
-            <h3 class="text-center">Schedule</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">Instructor</th>
-                        <th scope="col">Booked Rate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each schedule}}
-                    <tr>
-                        <th scope="row">{{id}}</th>
-                        <td>{{start_date}}</td>
-                        <td>{{instructor}}</td>
-                        <td>8/10</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-            <div class="d-flex flex-row-reverse">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddCourse"
-                    >Add Course Schedule</button>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Class
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i></button>
+                    </div>
+
+                </div>
+                <div class="card-body" id="class-list">
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <button class="btn btn-block btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#addClassModal">add Class</button>
+                        </div>
+                    </div>
+                    {{!-- <div class="card" data-Class-id="1">
+                        <div class="card-header">
+                            <h3 class="card-title">Instructor:Dave</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card" data-order-id="1">
+                                <div class="card-header">
+                                    <h3 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
+                                        title="phone:12345 email:sim@sim.com">OrderName</h3>
+                                    <div class="card-tools">
+                                        <button class="btn btn-tool">add student</button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>name</th>
+                                                <th>phone</th>
+                                                <th>email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>ray</th>
+                                                <th>12345</th>
+                                                <th>ray@ray.com</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Booking
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i></button>
+                    </div>
+
+                </div>
+                <div class="card-body">
+
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="AddCourse" tabindex="-1" aria-labelledby="AddCourseLabel" aria-hidden="true">
+
+    <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="AddCourseLabel">New Course</h5>
+                    <h5 class="modal-title" id="addClassModalLabel">Add Class</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/admin/api/course/class" method="POST" id="add-class-form">
                         <div class="mb-3">
-                            <label for="start-date" class="col-form-label">Start Date</label>
-                            <input type="date" class="form-control" id="start-date" >
+                            <label class="col-form-label">Instructor: </label>
+                            <select name="instructor_id" id="instructor-picker">
+                                <option value="" disabled selected>Choose your option</option>
+                            </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control"></textarea>
+                        <div class="mb-3" id="order-form">
+                            {{!-- //TODO: need to handle if two group of people in one class --}}
+                            <label for="message-text" class="col-form-label">add order:</label>
+                            <button type="button" class="btn btn-primary" id="add-order-btn"><i class="fas fa-plus"></i>
+                                add order</button>
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        Order
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i></button>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <fieldset>
+                                        <input placeholder="Customer name" type="text" tabindex="1" name="full_name"
+                                            required>
+                                    </fieldset>
+                                    <fieldset>
+                                        <input placeholder="Customer Email Address" type="email" tabindex="2"
+                                            name="email" required>
+                                    </fieldset>
+                                    <fieldset>
+                                        <input placeholder="Customer Phone Number" type="tel" tabindex="3"
+                                            name="phone_number" required>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <input placeholder="num of people" tabindex="4" name="num_people"
+                                            required></input>
+                                    </fieldset>
+                                    <input type="hidden" name="class_course_id" value="{{class_course_id}}">
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="submit" class="btn btn-primary" id="submit-add-class" form="add-class-form">Save
+                        class</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudnetModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addStudentModalLabel">add Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="" method="POST">
+                        <div class="row mb-2 pl-2" id="exist-student-list">
+                            <input type="email" name="student_email" placeholder="email" class="col-8">
+                            <button type="button" class="btn btn-tool col-1" id="add-exist-student"><i class="fas fa-plus"></i></button>
+                            
+                        </div>
 
 
-</div>
+                        <button type="button" class="btn btn-secondary mb-2" id="new-student-btn">new student</button>
+                        <div id="new-student-list">
+                            <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">student</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <input type="text" placeholder="name" name="name">
+                                <input type="tel" placeholder="phone" name="phone">
+                                <input type="email" placeholder="emial" name="email">
+                                <label for="mask">mask</label>
+                                <input type="checkbox" id="mask" name="mask">
+                                <label for="regulator">regulator</label>
+                                <input type="checkbox" id="regulator" name="regulator">
+                                <input type="text" placeholder="bcd size" name="bcd" >
+                                <input type="text" placeholder="wetsuit size" name="wetsuit">
+                                <input type="number" placeholder="boots size" name="boots">
+                                <input type="text" placeholder="fins size" name="fins">
+                                <input type="text" placeholder="others" name="others">
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save student</button>
+                </div>
+            </div>
+        </div>
+    </div>

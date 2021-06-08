@@ -11,16 +11,20 @@ class AdminViewRouter {
         const router = express.Router();
         router.use(express.urlencoded({extended:false}));
         router.get('/',(req,res)=>{
+            
             res.render('index',{layout:'admin'});
         });
         router.get('/course',(req,res)=>{
+            console.log(res.session)
             res.render('adminCourse',{layout:'admin'});
         });
         router.get('/classroom',(req,res)=>{
+            
             res.render('adminClassroom',{layout:'admin'});
         })
         router.get('/course/:course_id/schedule',async (req,res)=>{
             try {
+                
                 console.log('para',req.params);
             let course_id=req.params.course_id;
             let dataCourse = await this.knex('course').select('course_name').where('id',course_id);
@@ -42,6 +46,14 @@ class AdminViewRouter {
             }
             
             
+        })
+        router.get('/course/schedule/:id',(req,res)=>{
+            try {
+                //console.log(req.params);
+                res.render('adminCourseSchedule',{layout:'admin',class_course_id:req.params.id});
+            } catch (error) {
+                console.log(error);
+            }
         })
 
 

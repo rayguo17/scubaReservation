@@ -4,6 +4,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('boat',(table)=>{
       table.increments('id');
       table.integer('capacity');
+      table.string('name');
       table.string('type');
   }).then(()=>{
       return knex.schema.createTable('pool',(table)=>{
@@ -20,6 +21,7 @@ exports.up = function(knex) {
           table.string('level');
           table.integer('phone_number');
           table.string('email');
+          table.timestamp('created_at',{userTz:true}).defaultTo(knex.fn.now());
       })
   }).then(()=>{
     return knex.schema.createTable('course',(table)=>{
@@ -29,19 +31,26 @@ exports.up = function(knex) {
     })
 
   }).then(()=>{
+      return knex.schema.createTable('class_course',(table)=>{
+          table.increments('id');
+          table.integer('course_id');
+          table.date('start_date');
+          table.foreign('course_id').references('course.id');
+      })
+  })
+  .then(()=>{
       return knex.schema.createTable('course_schedule',(table)=>{
           table.increments('id');
-          table.date('start_date');
-          table.integer('course_id');
-          table.foreign('course_id').references('course.id');
+          table.integer('class_course_id');
+          table.foreign('class_course_id').references('class_course.id');
           table.integer('instructor_id');
           table.foreign('instructor_id').references('instructors.id');
       })
   }).then(()=>{
       return knex.schema.createTable('course_order',(table)=>{
           table.increments('id');
-          table.integer('schedule_id').unsigned();
-          table.foreign('schedule_id').references('course_schedule.id');
+          table.integer('course_schedule_id').unsigned();
+          table.foreign('course_schedule_id').references('course_schedule.id');
           table.integer('num_people');
           table.integer('phone_number');
           table.string('email');
@@ -50,13 +59,18 @@ exports.up = function(knex) {
   }).then(()=>{
       return knex.schema.createTable('student',(table)=>{
           table.increments('id');
-          table.integer('order_id');
-          table.foreign('order_id').references('course_order.id');
           table.string('full_name');
           table.string('email');
           table.integer('phone_number')
       })
   }).then(()=>{
+      return knex.schema.createTable('student_order',(table)=>{
+          table.increments('id');
+          table.integer('course_order_id').references('course_order.id');
+          table.integer('student_id').references('student.id');
+      })
+  })
+  .then(()=>{
       return knex.schema.createTable('student_gear',(table)=>{
           table.increments('id');
           table.integer('student_id');
@@ -86,10 +100,32 @@ exports.up = function(knex) {
           table.integer('schedule_id');
           table.foreign('schedule_id').references('course_schedule.id');
       })
+  }).then(()=>{
+      return knex.schema.createTable('pool_schedule',(table)=>{
+          table.increments('id');
+          table.date('booking_date');
+          table.integer('booking_session');
+          table.integer('pool_id');
+          table.integer('course_schedule_id');
+          table.integer('people');
+          table.foreign('pool_id').references('pool.id');
+          table.foreign('course_schedule_id').references('course_schedule.id');
+      })
+  }).then(()=>{
+      return knex.schema.createTable('boat_schedule',(table)=>{
+          table.increments('id');
+          table.date('booking_date');
+          table.integer('booking_session');
+          table.integer('boat_id');
+          table.integer('course_schedule_id');
+          table.integer('people');
+          table.foreign('boat_id').references('boat.id');
+          table.foreign('course_schedule_id').references('course_schedule.id');
+      })
   })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('classroom_schedule').dropTable('classroom').dropTable('student_gear').dropTable('student').dropTable('course_order').dropTable('course_schedule')
+  return knex.schema.dropTable('boat_schedule').dropTable('pool_schedule').dropTable('classroom_schedule').dropTable('classroom').dropTable('student_order').dropTable('student_gear').dropTable('student').dropTable('course_order').dropTable('course_schedule').dropTable('class_course')
                 .dropTable('course').dropTable('instructors').dropTable('pool').dropTable('boat');
 };

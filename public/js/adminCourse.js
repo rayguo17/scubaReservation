@@ -7,7 +7,7 @@ const categories ={
 window.onload = function(){
     setupSideBar();
     getEvent();
-    
+    loadCourse();
 }
 
 let setupCalendar = function(event){
@@ -34,13 +34,15 @@ let setupCalendar = function(event){
 } 
 let getEvent = function(){
     axios.get('/admin/api/course/schedule').then((data)=>{
-        console.log(data.data);
+        console.log('getEvent',data.data);
         let event = [];
         for (let i=0;i<data.data.length;i++){
-            let date = new Date(data.data[i].start_date).toISOString();
+            let date = new Date(data.data[i].start_date);
+            date.setDate(date.getDate()+1);
+            date = date.toISOString();
             //console.log(date.slice(0,10));
             let category = categories[data.data[i].course.category];
-            event.push({title:data.data[i].course.course_name,start:date.slice(0,10),url:`/admin/course/${data.data[i].id}`,backgroundColor:category,borderColor:category})
+            event.push({title:data.data[i].course.course_name,start:date.slice(0,10),url:`/admin/course/schedule/${data.data[i].id}`,backgroundColor:category,borderColor:category})
         }
         console.log(event);
         setupCalendar(event);
@@ -119,6 +121,20 @@ let setupSideBar = ()=>{
         allEl[i].classList.remove('active');
     }
     document.getElementById('course-schedule').classList.add('active');
+}
+let loadCourse = ()=>{
+    axios.get('/admin/api/course').then((data)=>{
+        console.log(data.data);
+        let coursePicker = document.getElementById('course-picker');
+
+        for(let i=0;i<data.data.length;i++){
+            let newOption = document.createElement('option');
+            newOption.value = data.data[i].id;
+            newOption.text = data.data[i].course_name;
+            coursePicker.appendChild(newOption);
+        }
+        
+    })
 }
 
 
