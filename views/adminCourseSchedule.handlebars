@@ -162,17 +162,18 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="" method="POST">
+                    <form action="/admin/api/course/class/student" method="POST" id="student-form">
                         <div class="row mb-2 pl-2" id="exist-student-list">
                             <input type="email" name="student_email" placeholder="email" class="col-8">
                             <button type="button" class="btn btn-tool col-1" id="add-exist-student"><i class="fas fa-plus"></i></button>
-                            
+                            <input type="hidden" name="orderId" id="hidden-orderId-input">
+                            <input type="hidden" name="class_course_id" id="hidden-class-course-id-input">
                         </div>
 
 
                         <button type="button" class="btn btn-secondary mb-2" id="new-student-btn">new student</button>
                         <div id="new-student-list">
-                            <div class="card card-info">
+                            {{!-- <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">student</h3>
                                 <div class="card-tools">
@@ -194,14 +195,14 @@
                                 <input type="text" placeholder="fins size" name="fins">
                                 <input type="text" placeholder="others" name="others">
                             </div>
-                        </div>
+                        </div> --}}
                         </div>
                         
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save student</button>
+                    <button type="submit" class="btn btn-primary" form="student-form">Save student</button>
                 </div>
             </div>
         </div>

@@ -120,13 +120,16 @@ let getClassList = async () => {
                 OrderName:orderName,
                 phone:phone,
                 email:email,
-                num:num_people
+                num:num_people,
+                orderId:orderId
             });
             orderParent.appendChild(innerCard);
         }
         classParent.appendChild(outerCard);
     }
+    getStudent();
     setupTooltip();
+    setupStudentModal();
 }
 let setupTooltip = ()=>{
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -155,7 +158,7 @@ let orderListTemplate = Handlebars.compile(`
 <div class="card-header">
     <h3 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right" title="phone:{{phone}} email:{{email}} num:{{num}}">{{OrderName}}</h3>
     <div class="card-tools">
-        <button class="btn btn-tool" data-bs-toggle="modal" data-bs-target="#addStudentModal">add student</button>
+        <button class="btn btn-tool" data-bs-toggle="modal" data-bs-target="#addStudentModal" data-bs-orderId={{orderId}}>add student</button>
         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
         class="fas fa-minus"></i></button>
     </div>
@@ -180,8 +183,8 @@ let orderListTemplate = Handlebars.compile(`
 let studentTemplate = Handlebars.compile(`
     {{#each student}}
             <tr>
-                <th>{{name}}</th>
-                <th>{{phone}}</th>
+                <th>{{full_name}}</th>
+                <th>{{phone_number}}</th>
                 <th>{{email}}</th>
             </tr>
     {{/each}}
@@ -230,4 +233,40 @@ let addNewStudent = ()=>{
     newStudent.classList.add('card','card-info');
     newStudent.innerHTML = newStudentTemplate();
     newStudentParent.appendChild(newStudent);
+}
+let setupStudentModal = ()=>{
+    var addStudentModal = document.getElementById('addStudentModal');
+    addStudentModal.addEventListener('show.bs.modal',function(e){
+        var button = e.relatedTarget
+        var orderId = button.getAttribute('data-bs-orderId');
+        var orderInput = addStudentModal.querySelector('#hidden-orderId-input');
+        orderInput.value = orderId;
+        var classCourseInput = addStudentModal.querySelector('#hidden-class-course-id-input');
+        var marker = document.getElementsByClassName('marker');
+        var classCourseId = marker[0].id;
+        classCourseInput.value = classCourseId;
+    })
+}
+let getStudent = async ()=>{
+    let orderList = document.querySelectorAll('div[data-order-id]');
+    let orderIdList = [];
+    let getStudentPromises = [];
+    for(let i=0;i<orderList.length;i++){
+        let orderId = orderList[i].getAttribute('data-order-id')
+        orderIdList.push(orderId);
+
+        console.log(orderId);
+        getStudentPromises.push(axios.get(`/admin/api/course/order/${orderId}`));
+
+    }
+    let resultStudent = await Promise.all(getStudentPromises);
+    console.log('getStudentPromises',resultStudent);
+    for(let i=0;i<resultStudent.length;i++){
+        let orderCard = document.querySelector(`div[data-order-id="${orderIdList[i]}"]`)
+        console.log(orderCard);
+        let studentParent = orderCard.querySelector('#student-marker');
+        studentParent.innerHTML= studentTemplate({student:resultStudent[i].data});
+
+    }
+    //console.log(orderList);
 }

@@ -29,7 +29,21 @@ class adminCourseService{
     getOrderList(id){
         return this.knex('course_order').join('course_schedule',{'course_schedule.id':'course_schedule_id'}).select(['course_order.*',this.knex.raw('to_json(course_schedule.*) as course_schedule')]).where('course_schedule_id',id);
     }
-    
+    addStudent(student){
+        return this.knex('student').insert(student).returning('id');
+    }
+    addStudentOrder(order){
+        return this.knex('student_order').insert(order).returning('id');
+    }
+    getStudentByEmail(email){
+        return this.knex('student').where('email',email.email).select('*');
+    }
+    addStudentGear(gear){
+        return this.knex('student_gear').insert(gear).returning('id');
+    }
+    getStudentByOrder(orderId){
+        return this.knex('student_order').where('course_order_id',orderId).join('student',{'student.id':'student_id'}).select(['student.*']);
+    }
 }
 
 
