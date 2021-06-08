@@ -91,7 +91,7 @@ a:focus {
 .tm-section-intro {
   background-image: url(../img/banner_1.jpg);
   background-attachment: fixed;
-  background-position: center 450%;
+  background-position: top center;
   background-repeat: no-repeat;
   background-size: 100%;
   color: white;
@@ -435,7 +435,7 @@ hr {
 
 @media (max-height: 800px) {
   .tm-section-intro {
-    height: 100vh;
+    height: 800px;
     min-height: 480px;
   }
 }
@@ -621,6 +621,15 @@ hr {
   background-repeat: no-repeat;
   background-size: 550px 340px;
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.junior:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/Junior-Open-water-Diver.jpg);
+  background-repeat: no-repeat;
+  background-size: 550px 340px;
+  background-blend-mode: multiply;
 }
 
 #juniorModalLong {
@@ -637,6 +646,15 @@ hr {
   background-size: 300px 300px;
   background-color: rgb(148, 220, 248);
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.seal:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/PADI-Seal-Team.png);
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+  background-blend-mode: multiply;
 }
 
 #sealModalLong {
@@ -653,6 +671,15 @@ hr {
   background-size: 300px 300px;
   background-color: rgb(148, 220, 248);
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.bubble:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/bubble-maker.jpg);
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+  background-blend-mode: multiply;
 }
 
 #bubbleModalLong {
@@ -676,6 +703,15 @@ hr {
   background-repeat: no-repeat;
   background-size: 480px 340px;
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.discovery:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/discover-scuba.jpg);
+  background-repeat: no-repeat;
+  background-size: 480px 340px;
+  background-blend-mode: multiply;
 }
 
 #discoveryModalLong {
@@ -692,6 +728,15 @@ hr {
   background-repeat: no-repeat;
   background-size: 350px 300px;
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.snorkel:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/snorkeling.jpg);
+  background-repeat: no-repeat;
+  background-size: 350px 300px;
+  background-blend-mode: multiply;
 }
 
 #snorkelModalLong {
@@ -708,6 +753,15 @@ hr {
   background-repeat: no-repeat;
   background-size: 340px 300px;
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.openWater:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/openwater.jpg);
+  background-repeat: no-repeat;
+  background-size: 340px 300px;
+  background-blend-mode: multiply;
 }
 
 #openWaterModalLong {
@@ -719,6 +773,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /*border: 1px #5a5a5a solid;*/
 }
 
 .advanced {
@@ -731,10 +786,25 @@ hr {
   background-repeat: no-repeat;
   background-size: 750px 460px;
   object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.advanced:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/Advance-Open-Water-Diver.jpg);
+  background-repeat: no-repeat;
+  background-size: 750px 460px;
+  background-blend-mode: multiply;
 }
 
 #advancedModalLong {
   font-size: 14px;
+}
+
+.button-text{
+  font-size: 1.2em;
+  font-weight: 900;
+  color: white;
 }
 
 

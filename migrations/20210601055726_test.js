@@ -1,4 +1,3 @@
-const { transformAuthInfo } = require("passport");
 
 exports.up = function(knex) {
   return knex.schema.createTable('boat',(table)=>{
