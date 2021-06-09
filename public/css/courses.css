@@ -1,0 +1,107 @@
+.container-fluid {
+  margin-top: 8em;
+}
+
+.box-container {
+  cursor: pointer;
+}
+
+.juniorContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.box {
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #0a0a0a;
+}
+
+#junior {
+  background-image: url(/img-course/Junior-Open-water-Diver.jpg);
+}
+
+#juniorModalLong {
+  font-size: 14px;
+}
+
+#seal {
+  background-image: url(/img-course/PADI-Seal-Team.png);
+}
+
+#sealModalLong {
+  font-size: 14px;
+}
+
+#bubble {
+  background-image: url(/img-course/bubble-maker.jpg);
+}
+
+#bubbleModalLong {
+  font-size: 14px;
+}
+
+.beginnerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#discovery {
+  background-image: url(/img-course/discover-scuba.jpg);
+}
+
+#discoveryModalLong {
+  font-size: 14px;
+}
+
+#snorkel {
+  background-image: url(/img-course/snorkeling.jpg);
+}
+
+#snorkelModalLong {
+  font-size: 14px;
+}
+
+#openWater {
+  background-image: url(/img-course/openwater.jpg);
+}
+
+#openWaterModalLong {
+  font-size: 14px;
+}
+
+.advancedContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#advanced {
+  background-image: url(/img-course/advanced.jpg);
+}
+
+#advanceModalLong {
+  font-size: 14px;
+}
+
+#rescue {
+  background-image: url(/img-course/rescue.jpg);
+}
+
+#rescueModalLong {
+  font-size: 14px;
+}
+
+#EFR {
+  background-image: url(/img-course/Emergency-First-Response-Primary-Care.jpg);
+}
+
+#EFReModalLong {
+  font-size: 14px;
+}
