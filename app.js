@@ -42,24 +42,44 @@ app.use('/admin/api/classroom',new AdminClassroomRouter(new AdminClassroomServic
 app.get("/", (request, response) => {
     response.render("index");
 });
-app.get("/fundiving", (request, response) => {
+app.get("/fun-diving", (request, response) => {
     response.render("fundiving");
 });
 
-app.get("/coursesJunior", (request, response) => {
+app.get("/courses-junior", (request, response) => {
   response.render("coursesJunior");
 });
 
-app.get("/coursesBeginner", (request, response) => {
+app.get("/courses-beginner", (request, response) => {
   response.render("coursesBeginner");
 });
 
-app.get("/coursesAdvanced", (request, response) => {
+app.get("/courses-advanced", (request, response) => {
   response.render("coursesAdvanced");
 });
 
-app.get("/coursesSpecialty", (request, response) => {
+app.get("/courses-prolevel", (request, response) => {
+  response.render("coursesProLevel");
+});
+
+app.get("/courses-specialty", (request, response) => {
   response.render("coursesSpecialty");
+});
+
+app.get("/courses-reactivate", (request, response) => {
+  response.render("coursesReActivate");
+});
+
+app.get("/localBoatSchedule", (request, response) => {
+  response.render("localBoatSchedule")
+});
+
+app.get("/localEquipment", (request, response) => {
+  response.render("localEquipment");
+});
+
+app.get("/localDiveSites", (request, response) => {
+  response.render("localDiveSites");
 });
 
 app.get("/pool", (request, response) => {

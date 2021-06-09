@@ -1,152 +1,113 @@
+.container-fluid {
+  margin-top: 8em;
+}
+
+.box-container {
+  cursor: pointer;
+  width: 300px;
+}
+
+.box {
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #0a0a0a;
+}
+
 .specialtyContainer {
-  margin-top: 7em;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+#aware{
+  background-image: url(/img-course/Fish-identification.jpg); 
+}
+#awareModalLong {
   font-size: 14px;
 }
 
-.aware{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
-  background-image: url(/img-course/Fish-identification.jpg);
-  background-repeat: no-repeat;
-  background-size: 440px 340px;
-  object-fit: scale-down;
-}
 
-
-.nitrox{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#nitrox{
   background-image: url(/img-course/PADI-Nitrox.jpg);
-  background-repeat: no-repeat;
-  background-size: 450px 400px;
-  object-fit: scale-down;
+}
+#nitroxModalLong {
+  font-size: 14px;
 }
 
-.drySuit{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#drySuit{
   background-image: url(/img-course/Dry-suit-Diver.jpg);
-  background-repeat: no-repeat;
-  background-size: 360px 330px;
-  object-fit: scale-down;
+}
+#drySuit{
+  font-size: 14px;
 }
 
-.DPV{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#DPV{
   background-image: url(/img-course/dpv-specialty.jpg);
-  background-repeat: no-repeat;
-  background-size: 360px 330px;
-  object-fit: scale-down;
+}
+#DPV{
+  font-size: 14px;
 }
 
-.wreck{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#wreck{
   background-image: url(/img-course/Wreck-Diver.jpeg);
-  background-repeat: no-repeat;
-  background-size: 490px 430px;
-  object-fit: scale-down;
+}
+#wreck{
+  font-size: 14px;
 }
 
-.deep{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#deep{
   background-image: url(/img-course/deep-diver.jpeg);
-  background-repeat: no-repeat;
-  background-size: 490px 430px;
-  object-fit: scale-down;
+}
+#deep{
+  font-size: 14px;
 }
 
-.naturalist{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#naturalist{
   background-image: url(/img-course/Underwater-Naturalist.jpg);
-  background-repeat: no-repeat;
-  background-size: 400px 300px;
-  object-fit: scale-down;
+}
+#naturalist{
+  font-size: 14px;
 }
 
-.night{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+
+#night{
   background-image: url(/img-course/night-diving.jpg);
-  background-repeat: no-repeat;
-  background-size: 480px 300px;
-  object-fit: scale-down;
+}
+#night{
+  font-size: 14px;
 }
 
-.search{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#search{
   background-image: url(/img-course/search.jpg);
-  background-repeat: no-repeat;
-  background-size: 450px 340px;
-  object-fit: scale-down;
 }
-
-.photographer{
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#search{
+  font-size: 14px;
+}
+#photographer{
   background-image: url(/img-course/PADI-Digital-Underwater-Photographer.jpg);
-  background-repeat: no-repeat;
-  background-size: 460px 340px;
-  object-fit: scale-down;
+}
+#photographer{
+  font-size: 14px;
 }
 
-.navigation {
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#navigation {
   background-image: url(/img-course/Underwater-Navigator.jpg);
-  background-repeat: no-repeat;
-  background-size: 400px 360px;
-  object-fit: scale-down;
+}
+#navigation{
+  font-size: 14px;
 }
 
-.buoyancy {
-  margin: 2em;
-  height: 300px;
-  width: 300px;
-  font-size: 16px;
-  color: white;
+#buoyancy {
   background-image: url(/img-course/Peak-Performance-buoyancy.jpg);
-  background-repeat: no-repeat;
-  background-size: 450px 360px;
-  object-fit: scale-down;
 }
+#buoyancy{
+  font-size: 14px;
+}
+
+
+

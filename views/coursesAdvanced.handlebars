@@ -1,114 +1,295 @@
 <div class="advancedContainer">
- <!-- Button trigger modal advanced diving-->
-<div>
-<button type="button" class="advanced" data-toggle="modal" data-target="#advancedModalLong"><strong>Advanced Open Water Diver</strong>
-  </button> 
- 
-</div>
-<!-- Modal -->
-
-<div class="modal fade" id="advancedModalLong" tabindex="-1" role="dialog" aria-labelledby="advancedModalLongTitle" aria-hidden="true">
-    
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="advancedModalLongTitle">Advanced Open Water Diver</h5>
-        <table>
-            <tr>
-                <th>Entry requirements:</th>
-                <td>12 years old above, with good physical health & has been certified as Open Water Diver</td>
-            </tr>
-            <tr>
-                <th>Course:</th>
-                <td>* 2 Academic Training includes 5 Adventure Dives including the Deep Adventure Dive, the Underwater Navigator Adventure Dive and 3 of the following:
-                <br>
-                    <li>Night Dive</li>
-                    <li>Boat dive</li>
-                    <li>Search & Recovery</li>
-                    <li>DSMB</li>
-                    <li>U/W Naturalist</li>
-                    <li>Peak Performance Buoyancy</li>
-                    <li>AWARE Fish Identification</li>
-                    
-                    *2 Days & 1 Night Open Water Training (5 boat dives in total)
-                </td>    
-            </tr>
-            
-            <tr>
-                <th>Course Fee:</th>
-                <td>HKD4,000.00@ (English, Cantonese or Mandarin)
-                <br>
-                1 pax: HK4,000 per person
-                <br>
-                2 pax: HK3,400 per person or more
-    
-                </td>
-            </tr>
-            
-            <tr>
-                <th>Course Includes:</th>
-                    <td>
+   <!-- Button trigger modal advanced diving-->
+   <div class="box-container" data-toggle="modal" data-target="#advancedModalLong">
+      <div id="advanced" class="box">
+      </div>
+      <strong>Advanced Open Water Diver</strong>
+   </div>
+   <!-- Modal -->
+   <div class="modal fade" id="advancedModalLong" tabindex="-1" role="dialog" aria-labelledby="advancedModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="advancedModalLongTitle">Advanced Open Water Diver</h5>
+               <table>
+                  <tr>
+                     <th>Entry requirements:</th>
+                     <td>12 years old above, with good physical health & has been certified as Open Water Diver</td>
+                  </tr>
+                  <tr>
+                     <th>Course:</th>
+                     <td>
+                        * 2 Academic Training includes 5 Adventure Dives including the Deep Adventure Dive, the Underwater Navigator Adventure Dive and 3 of the following:
+                        <br>
+                        <ul>
+                        <li>Night Dive</li>
+                        <li>Boat dive</li>
+                        <li>Search & Recovery</li>
+                        <li>DSMB</li>
+                        <li>U/W Naturalist</li>
+                        <li>Peak Performance Buoyancy</li>
+                        <li>AWARE Fish Identification</li>
+                        </ul>
+                        *2 Days & 1 Night Open Water Training (5 boat dives in total)
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Fee:</th>
+                     <td>HKD4,000.00@ (English, Cantonese or Mandarin)
+                        <br>
+                        1 pax: HK4,000 per person
+                        <br>
+                        2 pax: HK3,400 per person or more
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Includes:</th>
+                     <td>
+                       <ul>
                         <li>PADI manual and log book (except online training) </li>
                         <li>Training Fee</li>
                         <li>All Fundamental SCUBA Diving equipment rental during the course</li>
                         <li>PADI certification (PADI eCard) after all requirements are met</li>
                         <li>PADI membership</li>
-            </td>
+                        </ul>
+                     </td>
+                     <br>
+               </table>
+               <p>
+                  <strong>
+               <h6>Who should take this course?</h6></strong><br>
+               PADI (Junior) Open Water Divers (or equivalent) who are at least 12 years old are ready to step up and enroll in an Advanced Open Water Diver course. Young divers may only participate in certain Adventures Dives – feel free to contact us for more details.<br>
+               If you’re already an Adventure Diver, you only need to complete two more Adventure Dives to earn the Advanced Open Water Diver certification.
+               </p>
+               <br>
+               <p>
+                  <strong>
+               <h6>What will you learn?</h6></strong><br>
+               You’ll plan your learning path with your instructor by choosing from a long list of Adventure Dives. There are two required dives – Deep and Underwater Navigation – and you can choose the other three, for a total of five dives, together with your instructor.<br>
+               During the Deep Adventure Dive, you learn how to plan dives to deal with the physiological effects and challenges of deeper scuba diving. The Underwater Navigation Adventure Dive refines your compass navigation skills and helps you better navigate using kick-cycles and time.
+               <br>
+               The other knowledge and skills you get vary with your interest and the adventures you have – i.e. photography, buoyancy control, fish identification, exploring wrecks, night diving and Search & Recovery many more.
+               </p>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               {{!-- /*form*/ --}}
+               <div class="advanced_form">
+                  <form id="contact" action="" method="post">
+                     <h3>Contact Form</h3>
+                     <h4>Contact us for reservation</h4>
+                     <fieldset>
+                        <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Interested in which course" type="course" tabindex="4" required>
+                     </fieldset>
+                     <fieldset>
+                        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                     </fieldset>
+                     <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                     </fieldset>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Button trigger modal rescue diving-->
+   <div class="box-container" data-toggle="modal" data-target="#rescueModalLong">
+      <div id="rescue" class="box">
+      </div>
+      <strong>Rescue Diver Training Course</strong>
+   </div>
+   <!-- Modal -->
+   <div class="modal fade" id="rescueModalLong" tabindex="-1" role="dialog" aria-labelledby="rescueModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="rescueModalLongTitle">Rescue Diver Training Course</h5>
+               <table>
+                  <tr>
+                     <th>Entry requirements:</th>
+                     <td>12 years old or above, good physical health & holding an Advanced Open Water Diver Certificate and Emergency First Response Certificate or have an equivalent qualifications (A minimum of 20 logged dives is required for another training organizations)</td>
+                  </tr>
+                  <tr>
+                     <th>Course:</th>
+                     <td>
+                        <ul>
+                           <li>Classroom Session - Knowledge development review and final exam</li>
+                           <li>Classroom Session & Water Day One - Review of Rescue Manual knowledge review answers. Practice In-water Rescue Skills</li>
+                           <li>CPR & First Aid & Open water training. In-water Rescue Scenarios</li>
+                        </ul>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Fee:</th>
+                     <td>Rescue Diver Course Fee : HKD3,700.00  (English, Cantonese or Mandarin)
+                        Emergency First Response HK$1,300
                         <br>
-                     
-        </table>
-        <p><strong><h6>Who should take this course?</h6></strong><br>
-        PADI (Junior) Open Water Divers (or equivalent) who are at least 12 years old are ready to step up and enroll in an Advanced Open Water Diver course. Young divers may only participate in certain Adventures Dives – feel free to contact us for more details.<br>
-        If you’re already an Adventure Diver, you only need to complete two more Adventure Dives to earn the Advanced Open Water Diver certification.
-        </p>
-        
-        <br>
-        <p><strong><h6>What will you learn?</h6></strong><br>
-        You’ll plan your learning path with your instructor by choosing from a long list of Adventure Dives. There are two required dives – Deep and Underwater Navigation – and you can choose the other three, for a total of five dives, together with your instructor.<br>
-        During the Deep Adventure Dive, you learn how to plan dives to deal with the physiological effects and challenges of deeper scuba diving. The Underwater Navigation Adventure Dive refines your compass navigation skills and helps you better navigate using kick-cycles and time.
-        <br>
-        The other knowledge and skills you get vary with your interest and the adventures you have – i.e. photography, buoyancy control, fish identification, exploring wrecks, night diving and Search & Recovery many more.
-
-        </p>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                        HKD5,000 per person,EFR + Rescue
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Includes:</th>
+                     <td>
+                        <ul>
+                           <li>PADI manual and log book (except online training) </li>
+                           <li>Training Fee</li>
+                           <li>All Fundamental SCUBA Diving equipment rental during the course</li>
+                           <li>PADI certification (PADI eCard) after all requirements are met</li>
+                           <li>PADI membership</li>
+                        </ul>
+                     </td>
+                     <br>
+               </table>
+               <p>
+                  <strong>
+               <h6>Who should take this course?</h6></strong><br>
+               Scuba divers describe the PADI Rescue Diver course as the most challenging, yet most rewarding course they've ever taken. Why? Because you learn to prevent and manage problems in the water, and become more confident in your skills as a diver, knowing that you can help others if needed. During the course, you learn to become a better buddy by practicing problem solving skills until they become second nature. Plus, the course is just fun - it's serious, but still allows for lots of laughter in between the focused learning.
+               </p>
+               <br>
+               <p>
+                  <strong>
+               <h6>What will you learn?</h6></strong><br>
+               The PADI Rescue Diver course prepares you to deal with dive emergencies, minor and major, using a variety of techniques. Through knowledge development and rescue exercises, you learn what to look for and how to respond. During rescue scenarios, you put into practice your knowledge and skills. 
+               </p>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               {{!-- /*form*/ --}}
+               <div class="rescue_form">
+                  <form id="contact" action="" method="post">
+                     <h3>Contact Form</h3>
+                     <h4>Contact us for reservation</h4>
+                     <fieldset>
+                        <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Interested in which course" type="course" tabindex="4" required>
+                     </fieldset>
+                     <fieldset>
+                        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                     </fieldset>
+                     <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                     </fieldset>
+                  </form>
+               </div>
+            </div>
+         </div>
       </div>
-      <div class="modal-body">
-    
-    {{!-- /*form*/ --}}
-  <div class="advanced_form">  
-  <form id="contact" action="" method="post">
-    <h3>Contact Form</h3>
-    <h4>Contact us for reservation</h4>
-    <fieldset>
-      <input placeholder="Your name" type="text" tabindex="1" required autofocus>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Email Address" type="email" tabindex="2" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Interested in which course" type="course" tabindex="4" required>
-    </fieldset>
-    <fieldset>
-      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-    </fieldset>
-    
-  </form>
-  </div>
+   </div>
+   <!-- Button trigger modal EFR -->
+   <div class="box-container" data-toggle="modal" data-target="#EFRModalLong">
+      <div id="EFR" class="box">
       </div>
-    </div>
-  </div>
-</div>
-
-
-
- 
-
+      <strong>PADI EFR (Emergency first Response)</strong>
+   </div>
+   <!-- Modal -->
+   <div class="modal fade" id="EFRModalLong" tabindex="-1" role="dialog" aria-labelledby="advancedModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="EFRModalLongTitle">PADI EFR (Emergency first Response)</h5>
+               <table>
+                  <tr>
+                     <th>Entry requirements:</th>
+                     <td>Diver certification is not required</td>
+                  </tr>
+                  <tr>
+                     <th>Course:</th>
+                     <td>
+                        <ul>
+                           <li>Classroom Session - Knowledge development review and final exam</li>
+                           <li>Classroom Session & Water Day One - Review of Rescue Manual knowledge review answers. Practice In-water Rescue Skills</li>
+                           <li>CPR & First Aid & Open water training. In-water Rescue Scenarios</li>
+                        </ul>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Fee:</th>
+                     <td>Emergency First Response HK$1,300
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>Course Includes:</th>
+                     <td>
+                        <dl>
+                           <dd>PADI Rescue Diver Manual, Diving Accident Management Work-slate</dd>
+                           <dd>All necessary equipment rental during the course</dd>
+                           <dd>Certification Card</dd>
+                        </dl>
+                     </td>
+               </table>
+               <p>
+                  <strong>
+               <h6>Who should take this course?</h6></strong><br>
+               Emergency First Response training focuses on building confidence in lay rescuers and increasing their willingness to respond when faced with a medical emergency. Course participants learn simple to follow steps for emergency care and practice applying skills in a nonstressful learning environment. All courses are supported by self-study materials, videos and quick reference cards to enhance learning and allow you start learning right away.
+               <br>
+               EFR courses meet the CPR and first aid training requirements for the PADI Rescue Diver course and all professional-level ratings. Most PADI Instructors are also Emergency First Response Instructors.
+               <br>
+               The following EFR courses are based on internationally recognized medical guidelines for emergency care. 
+               </p>
+               <br>
+               <p>
+                  <strong>
+               <h6>What will you learn?</h6></strong><br>
+               <ul>
+                  <li>Primary Care (CPR) – This course teaches you the steps and techniques for handling life-threatening emergencies. You’ll practice eight skills for aiding patients who aren’t breathing, have no heartbeat, may have a spinal injury, may be in shock or who may have serious bleeding. You’ll learn to how to perform CPR and continue to monitor the patient, so that you provide every possible chance of survival while waiting for emergency medical services to arrive.</li>
+                  <li>Secondary Care (First Aid) – Because many medical conditions are not life-threatening and emergency medical services are sometimes delayed or unavailable, this course teaches you how to provide first aid that eases pain and reduces the risk of further harm. You’ll learn to assess a variety of injuries and illnesses and practice bandaging and splinting.</li>
+                  <li>Care for Children – This course allows participants to learn, practice and apply emergency care skills specific to helping infants and children with medical emergencies. It’s designed for those who work with children or are likely to have to respond to emergencies involving youngsters. This course is often integrated with Primary Care (CPR) and Secondary Care (First Aid) courses.</li>
+               </ul>
+               </p>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               {{!-- /*form*/ --}}
+               <div class="EFR_form">
+                  <form id="contact" action="" method="post">
+                     <h3>Contact Form</h3>
+                     <h4>Contact us for reservation</h4>
+                     <fieldset>
+                        <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+                     </fieldset>
+                     <fieldset>
+                        <input placeholder="Interested in which course" type="course" tabindex="4" required>
+                     </fieldset>
+                     <fieldset>
+                        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                     </fieldset>
+                     <fieldset>
+                        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                     </fieldset>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
