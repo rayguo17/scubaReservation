@@ -1,5 +1,4 @@
-{{!--
-<script src="/js/adminCourse.js"></script> --}}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.7.0/main.min.css">
 
 <div class="content-wrapper px-4 py-2">
@@ -11,9 +10,40 @@
             <div id="calendar"></div>
         </div>
     <div>
-        <button class="btn btn-primary">Add Course Schedule</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCourseModal" >Add Course Schedule</button>
     </div>
     </div>
+</div>
+
+{{!-- add schedule modal --}}
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCourseModalLabel">Add Schedule</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addCourse" action="/admin/api/course/schedule" method="POST">
+          <div class="mb-3 input-field ">
+              <label for="" class="col-form-label">course name:</label>
+            <select id="course-picker" name="course_id">
+                <option value="" disabled selected>Choose your option</option>
+                
+            </select>
+          </div>
+          <div class="mb-3">
+              <label for="col-form-label">start date:</label>
+              <input type="date" name="start_date">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+        <button type="submit" class="btn btn-primary" form="addCourse">add schedule</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.7.0/main.min.js"></script>
 <script src="/js/adminCourse.js"></script>
