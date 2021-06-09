@@ -18,6 +18,8 @@ const AdminCourseService = require('./service/adminCourseService');
 const AdminCourseRouter = require('./router/adminCourseRouter');
 const AdminClassroomService = require('./service/adminClassroomService');
 const AdminClassroomRouter = require('./router/adminClassroomRouter');
+const AdminInstructorService = require('./service/adminInstructorService');
+const AdminInstructorRouter = require('./router/adminInstructorRouter');
 
 const port = process.env.PORT || 8000;
 const app = express();
@@ -27,18 +29,20 @@ setupSession(app,redisClient);
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.engine(
-    "handlebars",
-    handlebars({ defaultLayout: "main" })
-);
-app.set("view engine", "handlebars");
-app.use(express.static("public"));
+// app.engine(
+//     "handlebars",
+//     handlebars({ defaultLayout: "main" })
+// );
+// app.set("view engine", "handlebars");
+// app.use(express.static("public"));
+
 
 //set up routes for each feature 
 app.use('/',new ViewRouter().router());
 app.use('/admin',new AdminViewRouter(knex).router());
 app.use('/admin/api/course',new AdminCourseRouter(new AdminCourseService(knex)).router());
 app.use('/admin/api/classroom',new AdminClassroomRouter(new AdminClassroomService(knex)).router());
+app.use('/admin/api/instructor',new AdminInstructorRouter(new AdminInstructorService(knex)).router());
 app.get("/", (request, response) => {
     response.render("index");
 });

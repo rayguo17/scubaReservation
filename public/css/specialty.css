@@ -14,6 +14,17 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid #0a0a0a;
+  background-size: 440px 340px;
+  object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.aware:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/Fish-identification.jpg);
+  background-repeat: no-repeat;
+  background-size: 440px 340px;
+  background-blend-mode: multiply;
 }
 
 .specialtyContainer {
@@ -37,6 +48,18 @@
 }
 #nitroxModalLong {
   font-size: 14px;
+  background-repeat: no-repeat;
+  background-size: 450px 400px;
+  object-fit: scale-down;
+  border: 1px #5a5a5a solid;
+}
+
+.nitrox:hover {
+  background-color: rgb(10, 84, 141, .8);
+  background-image: url(/img-course/PADI-Nitrox.jpg);
+  background-repeat: no-repeat;
+  background-size: 450px 400px;
+  background-blend-mode: multiply;
 }
 
 #drySuit{
