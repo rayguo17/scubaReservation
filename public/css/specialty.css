@@ -7,7 +7,7 @@
   width: 300px;
 }
 
-.box {
+.box:hover {
   height: 300px;
   width: 300px;
   font-size: 16px;
@@ -19,13 +19,13 @@
   border: 1px #5a5a5a solid;
 }
 
-.aware:hover {
+/* .aware:hover {
   background-color: rgb(10, 84, 141, .8);
   background-image: url(/img-course/Fish-identification.jpg);
   background-repeat: no-repeat;
   background-size: 440px 340px;
   background-blend-mode: multiply;
-}
+} */
 
 .specialtyContainer {
   display: flex;
