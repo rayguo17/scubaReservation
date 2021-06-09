@@ -9,6 +9,7 @@ window.onload = () => {
     addExistStudentBtn.addEventListener('click',addExistStudent);
     let newStudentBtn = document.getElementById('new-student-btn');
     newStudentBtn.addEventListener('click',addNewStudent);
+    setupClassroom();
 }
 
 
@@ -255,18 +256,30 @@ let getStudent = async ()=>{
         let orderId = orderList[i].getAttribute('data-order-id')
         orderIdList.push(orderId);
 
-        console.log(orderId);
+        //console.log(orderId);
         getStudentPromises.push(axios.get(`/admin/api/course/order/${orderId}`));
 
     }
     let resultStudent = await Promise.all(getStudentPromises);
-    console.log('getStudentPromises',resultStudent);
+    //console.log('getStudentPromises',resultStudent);
     for(let i=0;i<resultStudent.length;i++){
         let orderCard = document.querySelector(`div[data-order-id="${orderIdList[i]}"]`)
-        console.log(orderCard);
+        //console.log(orderCard);
         let studentParent = orderCard.querySelector('#student-marker');
         studentParent.innerHTML= studentTemplate({student:resultStudent[i].data});
 
     }
     //console.log(orderList);
+}
+let setupClassroom = async ()=>{
+    let getClassroom = await axios.get('/admin/api/classroom');
+    console.log(getClassroom);
+    let classroomParent = document.getElementById('classroom-picker');
+    console.log(classroomParent);
+    for(let i=0;i<getClassroom.data.length;i++){
+        let newOption = document.createElement('option');
+        newOption.value = getClassroom.data[i].id;
+        newOption.text = getClassroom.data[i].name;
+        classroomParent.appendChild(newOption);
+    }
 }
