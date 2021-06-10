@@ -6,9 +6,7 @@ class adminClassroomService{
         return this.knex('classroom').select(['id','name']);
     }
     getAllSchedule(){
-        return this.knex('classroom_schedule').join('classroom',{'classroom.id':'classroom_id'})
-                    .join('course_schedule',{'course_schedule.id':'schedule_id'})
-                    .select(['classroom_schedule.*',this.knex.raw('to_json(classroom.name) as classroom'),this.knex.raw('to_json(course_schedule.course_id) as course_id')])
+        return this.knex('classroom_schedule').select('*');
     }
     getNumSchedule(classSchedule){
         return this.knex('classroom_schedule').where('classroom_id',classSchedule.classroom_id)
@@ -31,6 +29,15 @@ class adminClassroomService{
     getClassroomBooking(courseId){
         return this.knex('classroom_schedule').where('schedule_id',courseId);
         
+    }
+    getScheduleById(scheduleId){
+        return this.knex('course_schedule').where('id',scheduleId).select('*');
+    }
+    getClassCourseById(classId){
+        return this.knex('class_course').where('id',classId).select('*');
+    }
+    deleteSchedule(bookingId){
+        return this.knex('classroom_schedule').where('id',bookingId).del().returning('booking_date');
     }
 }
 

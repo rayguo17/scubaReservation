@@ -2,16 +2,19 @@ window.onload = function(){
     // console.log(getEvent())
     setupSideBar();
     setupCalendar();
+    
 }
 
 let setupCalendar = async function(){
+    //console.log(getEvent());
     let result = await getEvent();
-    console.log(result);
+    //console.log('promiseResult',result);
+    
     let resource = result[0].data;
-    let rowEvents = result[1].data;
-    let course = result[2].data;
+    let course = result[1].data;
+    let rowEvents = result[2].data;
     let events = formatEvent(rowEvents,course);
-    console.log('format data',events);
+    //console.log('format data',events);
     var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             views:{
@@ -25,6 +28,28 @@ let setupCalendar = async function(){
                 start: 'prev,next today',
                 center: 'title',
                 end: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
+            },
+            eventDidMount:function(info){
+                // let tooltip = new bootstrap.Tooltip(info.el,{
+                //    title:info.event.extendedProps.description ,
+                //    placement:'top',
+                //    trigger:'hover',
+                //    container:'body',
+                //    template:tooltipTemplate.outerHTML
+                // });
+               //console.log('eventDidMount',info)
+               let newDiv = document.createElement('div');
+               newDiv.innerHTML = toopTipTemplate({description:info.event.extendedProps.description,booking_id:info.event.extendedProps.booking_id})
+               setupDeleteBtn(newDiv);
+               
+               let tooltip =  tippy(info.el,{
+                   allowHTML:true,
+                    theme:'light',
+                   interactive:true,
+                   content:newDiv,
+                   placement:'left'
+
+               })
             },
             // slotLabelInterval:{hours:3},
             // slotDuration:'03:00:00',
@@ -48,6 +73,7 @@ let setupCalendar = async function(){
         });
 
         calendar.render();
+        
         //hide the license message
         document.getElementsByClassName('fc-license-message')[0].style.display = 'none';
         
@@ -72,18 +98,18 @@ const categories ={
     specialty:'#ffc107'
 }
 let getEvent =  ()=>{
-    let getEvent = axios.get('/admin/api/classroom');
-    let getClassroom = axios.get('/admin/api/classroom/schedule');
+    let getClassroom = axios.get('/admin/api/classroom');
+    let getEvent = axios.get('/admin/api/classroom/schedule/events');
     let getCourse = axios.get('/admin/api/course');
-    return Promise.all([getEvent,getClassroom,getCourse]);
+    return Promise.all([getClassroom,getCourse,getEvent]);
 }
 let formatEvent = (raw,course)=>{
     let result = [];
     for(let i=0;i<raw.length;i++){
         let start = new Date(raw[i].booking_date).toISOString().slice(0,10)+sessions[raw[i].booking_session-1].start;
         let end = new Date(raw[i].booking_date).toISOString().slice(0,10)+sessions[raw[i].booking_session-1].end;
-        console.log('start',new Date(start));
-        console.log('end',end);
+        //console.log('start',new Date(start));
+        //console.log('end',end);
         let courseName;
         let category;
         course.map((item)=>{
@@ -92,12 +118,17 @@ let formatEvent = (raw,course)=>{
                 category = categories[item.category];
             }
         })
+        let courseStartDate = new Date(raw[i].start_date).toISOString().slice(0,10);
+        let description = `${courseStartDate} ${raw[i].instructor_name}`;
         result.push({
-            resourceId:1,
+            resourceId:raw[i].classroom_id,
             title:courseName,
             backgroundColor:category,
             start:new Date(start),
-            end:new Date(end)
+            end:new Date(end),
+            url:`/admin/course/schedule/${raw[i].class_course_id}`,
+            description:description,
+            booking_id:raw[i].booking_id
         })
     }
 
@@ -119,8 +150,12 @@ let exampleResources = [
 let exampleEvents = [
     {
         resourceId:1,
-        title:'course1',
-        start:'2021-06-12'
+        title:'PADI Discover Snorkeling',
+        start:'2021-06-10T09:00:00',
+        end:'2021-06-10T12:00:00',
+        description:'2021-06-10 Dave Chueng',
+        url:'/admin/course/schedule/1',
+        color:'#28a745'
     }
 ];
 
@@ -131,4 +166,30 @@ let setupSideBar = ()=>{
         allEl[i].classList.remove('active');
     }
     document.getElementById('classroom').classList.add('active');
+}
+let toopTipTemplate = Handlebars.compile(`
+    
+        <p style='display: inline;'>{{description}}</p>
+        <button type="button" class="btn btn-danger btn-sm delete-booking-btn" data-booking-id="{{booking_id}}" ><i class="fas fa-calendar-times fa-sm" style='display:inline'></i></button>
+    
+`)
+let setupDeleteBtn = (outerDiv)=>{
+    //console.log('setting up delete btn',outerDiv);
+    let deleteBtn = outerDiv.querySelector('.delete-booking-btn');
+    //console.log(deleteBtn);
+    deleteBtn.addEventListener('click',(e)=>{
+        //console.log('this is the button',e.currentTarget);
+        let orderId = e.currentTarget.getAttribute('data-booking-id')
+        console.log('this is my order id',orderId);
+        axios.delete('/admin/api/classroom/schedule',{
+            data:{
+                bookingId:orderId
+            }
+        }).then((data)=>{
+            console.log(data);
+            if(data.data=='done'){
+                window.location.reload();
+            }
+        })
+    })
 }
