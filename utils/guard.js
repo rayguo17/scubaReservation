@@ -1,7 +1,12 @@
 
 module.exports = (req,res,next)=>{
     if(req.isAuthenticated()){
-        return next();
+        console.log('guard',req.user);
+        if(req.user.isAdmin){
+            //console.log('role checked')
+            return next();
+        }
+        
     }
-    res.redirect('/login');
+    res.redirect('/');
 }
