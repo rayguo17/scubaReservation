@@ -1,0 +1,45 @@
+.box-container {
+  cursor: pointer;
+}
+
+.box {
+  height: 300px;
+  width: 300px;
+  font-size: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #0a0a0a;
+}
+
+
+.proLevelContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 8em;
+}
+
+
+#diveMaster {
+  background-image: url(/img-course/Divemaster.png);
+}
+
+#diveMasterModalLong {
+  font-size: 14px;
+}
+
+#assistant {
+  background-image: url(/img-course/assitant-instructor.jpg);
+}
+
+#assistantModalLong {
+  font-size: 14px;
+}
+
+#IDC {
+  background-image: url(/img-course/Instructor-Development.jpg);
+}
+
+#IDCModalLong {
+  font-size: 14px;
+}
