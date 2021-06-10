@@ -70,8 +70,10 @@ class adminClassroomRouter {
                 let num = await this.service.getNumSchedule(req.body);
                 let classCapacity = await this.service.getClassroomCapacity(req.body.classroom_id);
                 console.log(classCapacity);
-                //console.log(num);
-                let forNum = num + req.body.people;
+                console.log(num);
+                let forNum = num[0].sum + parseInt(req.body.people);
+                console.log('forecast num', forNum);
+                console.log('capacity',classCapacity[0].capacity);
                 if (forNum > classCapacity[0].capacity) {
                     res.send(false);
                 } else {
