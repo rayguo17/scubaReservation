@@ -248,10 +248,10 @@ class adminCourseRouter {
             }
         })
         router.get('/order/:id',async (req,res)=>{
-            console.log(req.params);
+            //console.log(req.params);
             let orderId = req.params.id;
             let result = await this.service.getStudentByOrder(orderId);
-            console.log('getStudentResult',result);
+            //console.log('getStudentResult',result);
             res.send(result);
         })  
 

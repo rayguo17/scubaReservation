@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return Promise.all([knex('classroom_schedule').del(),knex('course_schedule').del(),knex('instructors').del(),knex('course').del(),knex('classroom').del()])
+  return Promise.all([knex('class_course').del(),knex('instructors').del(),knex('course').del(),knex('classroom').del()])
     .then(function () {
       // Inserts seed entries
       return knex('instructors').insert([
@@ -24,6 +24,26 @@ exports.seed = function(knex) {
           {id:2,capacity:20,name:'cocoon'}
         ])
       })
+    }).then(()=>{
+      return knex('class_course').insert([
+            {id:1,start_date:new Date(Date.now()),course_id:1},
+            {id:2,start_date:new Date(Date.now()+1000*60*60*24*5),course_id:3},
+            {id:3,start_date:new Date(Date.now()+1000*60*60*24*10),course_id:5},
+            {id:4,start_date:new Date(Date.now()+1000*60*60*24*15),course_id:3},
+            {id:5,start_date:new Date(Date.now()+1000*60*60*24*20),course_id:5}
+          ])
+    }).then(()=>{
+      // return knex('course_schedule').insert([
+      //   {id:1,class_course_id:1,instructor_id:1},
+      //   {id:2,class_course_id:1,instructor_id:2},
+        
+      // ])
+    }).then(()=>{
+      // return knex('classroom_schedule').insert([
+      //   {id:1,booking_date:new Date('2021-06-10'),booking_session:1,people:5,classroom_id:1,schedule_id:1},
+      //   {id:2,booking_date:new Date('2021-06-10'),booking_session:1,people:5,classroom_id:1,schedule_id:1},
+      //   {id:3,booking_date:new Date('2021-06-10'),booking_session:1,people:5,classroom_id:1,schedule_id:1},
+      // ])
     });
 };
 // .then(()=>{
