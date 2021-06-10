@@ -1,0 +1,101 @@
+
+
+/*animation Meet our instructors */
+#container-heading {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-weight: bold;
+  position: top;
+  width: 100%;
+  bottom: 45%;
+  display: block;
+  margin-top: 2em;
+}
+
+#flip {
+  height: 50px;
+  overflow: hidden;
+}
+
+#flip > div > div {
+  color: #fff;
+  padding: 4px 12px;
+  height: 45px;
+  margin-bottom: 45px;
+  display: inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+#flip div div {
+  background: #42c58a;
+}
+#flip div:first-child div {
+  background: #4ec7f3;
+}
+#flip div:last-child div {
+  background: #dc143c;
+}
+
+@keyframes show {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+
+.rowInstructor {
+  display: flex;
+}
+
+/* Create three equal columns that sits next to each other */
+.columnInstructor {
+  /* display: 20%; */
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 15px;
+
+  background-repeat: no-repeat;
+}
+
+.instructorsPic {
+  /* float: left; */
+  width: 100px;
+  height: 450px;
+  object-fit: cover;
+  position: relative;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.flowChart {
+  /* display: flexbox; */
+  width: 100%;
+}
+.flowChart img {
+  width: 100%;
+  height: 100%;
+}
