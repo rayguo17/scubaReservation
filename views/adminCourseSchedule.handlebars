@@ -112,7 +112,7 @@
                                         <th>num people</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="classroom-list-table">
 
                                 </tbody>
                             </table>
@@ -265,21 +265,18 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="book-classroom-form" method="POST" action="/admin/api/classroom/schedule">
                                     <div class="mb-2">
                                         <label for="class-picker" class="col-form-label">Class:</label>
-                                        <select name="course_schedule_id" id="class-picker">
+                                        <select name="schedule_id" id="class-picker">
                                             <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Dave Chueng</option>
-                                            <option value="2">Tom smith</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
                                         <label for="classroom-picker" class="col-form-label">classroom:</label>
                                         <select name="classroom_id" id="classroom-picker">
                                             <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Hanseng</option>
-                                            <option value="2">Cocoon</option>
+                                            
                                         </select>
                                     </div>
                                     <div class="mb-2">
@@ -292,19 +289,20 @@
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option value="3">3</option> 
                                         </select>
                                     </div>
                                     <div class="mb-2">
                                         <label for="classroom-picker" class="col-form-label">number of people:</label>
                                         <input type="number" name="people" id="number-input">
                                     </div>
+                                    <input type="hidden" name="class_course_id" id="book-classroom-hidden">
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-info">check availability</button>
-                                <button type="button" class="btn btn-primary">book</button>
+                                <button type="button" class="btn btn-info" id="check-availability-btn">check availability</button>
+                                <button type="submit" id="book-classroom-btn" class="btn btn-primary disabled" form="book-classroom-form">book</button>
                             </div>
                         </div>
                     </div>

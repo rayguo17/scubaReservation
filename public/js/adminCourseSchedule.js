@@ -10,6 +10,9 @@ window.onload = () => {
     let newStudentBtn = document.getElementById('new-student-btn');
     newStudentBtn.addEventListener('click',addNewStudent);
     setupClassroom();
+    let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
+    checkAvaliabilityBtn.addEventListener('click',checkAvaliability);
+    setupClassroomList();
 }
 
 
@@ -128,9 +131,11 @@ let getClassList = async () => {
         }
         classParent.appendChild(outerCard);
     }
+    setupClassList();
     getStudent();
     setupTooltip();
     setupStudentModal();
+    setupClassroomBooking();
 }
 let setupTooltip = ()=>{
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -281,5 +286,91 @@ let setupClassroom = async ()=>{
         newOption.value = getClassroom.data[i].id;
         newOption.text = getClassroom.data[i].name;
         classroomParent.appendChild(newOption);
+    }
+}
+let setupClassList = ()=>{
+    let classCard = document.querySelectorAll('div[data-Class-id]');
+    //console.log('setupClassList',classCard);
+    let classId = [];
+    let instructors = [];
+    let classParent = document.getElementById('class-picker');
+    for(let i=0;i<classCard.length;i++){
+        let cardTitle = classCard[i].querySelector('.card-title');
+        let instructor = cardTitle.textContent.slice(12);
+        let newOption = document.createElement('option');
+        newOption.value = classCard[i].getAttribute('data-Class-id');
+        newOption.text = cardTitle.textContent.slice(12);
+        classParent.appendChild(newOption);
+    }
+
+}
+
+let checkAvaliability = async ()=>{
+    let classroom_id = document.getElementById('classroom-picker').value;
+    let booking_date = document.getElementById('date-picker').value;
+    let booking_session = document.getElementById('session-picker').value;
+    let people = document.getElementById('number-input').value;
+    let bookBtn = document.getElementById('book-classroom-btn');
+    console.log(classroom_id,booking_date,booking_session,people);
+    let result = await axios.post('/admin/api/classroom/scheduleCheck',{
+        classroom_id,booking_date,booking_session,people
+    })
+    console.log(result.data);
+    if(result.data){
+        bookBtn.classList.remove('disabled');
+        //console.log(Swal);
+        let Toast = Swal.mixin({
+            toast:true,
+            position:'top-end',
+            showConfirmButton:false,
+            timer:3000,
+            
+        })
+        Toast.fire({
+            icon:'success',
+            title:'booking avaliable'
+        })
+    }else{
+        let Toast = Swal.mixin({
+            toast:true,
+            position:'top-end',
+            showConfirmButton:false,
+            timer:3000,
+            
+        })
+        Toast.fire({
+            icon:'error',
+            title:'booking unavaliable pls choose another time'
+        })
+    }
+
+}
+let setupClassroomBooking = ()=>{
+    let marker = document.getElementsByClassName('marker');
+    console.log(marker[0].id)
+    let classCourseId = marker[0].id;
+    let hiddenInput = document.getElementById('book-classroom-hidden');
+    hiddenInput.value = classCourseId;
+}
+let classroomListTemplate = Handlebars.compile(`
+    <td>{{instructor}}</td>
+    <td>{{classroom}}</td>
+    <td>{{booking_date}}</td>
+    <td>{{booking_session}}</td>
+    <td>{{num_people}}</td>
+`)
+let setupClassroomList = async ()=>{
+    let marker = document.getElementsByClassName('marker');
+    let classCourseId = marker[0].id;
+    let classroomTable = document.getElementById('classroom-list-table');
+    let result = await axios.get(`/admin/api/classroom/course/${classCourseId}`);
+    console.log(result);
+    for(let i=0;i<result.data.length;i++){
+        let date = new Date(result.data[i].booking_date);
+        date.setDate(date.getDate()+1);
+        result.data[i].booking_date = date.toISOString().slice(0,10)
+        let tr = document.createElement('tr');
+        tr.innerHTML = classroomListTemplate(result.data[i]);
+        classroomTable.appendChild(tr);
     }
 }
