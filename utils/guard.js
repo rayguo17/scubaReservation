@@ -8,5 +8,5 @@ module.exports = (req,res,next)=>{
         }
         
     }
-    res.redirect('/');
+    res.redirect('/admin/login');
 }

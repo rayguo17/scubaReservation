@@ -105,10 +105,10 @@ exports.up = function(knex) {
           table.date('booking_date');
           table.integer('booking_session');
           table.integer('pool_id');
-          table.integer('course_schedule_id');
+          table.integer('schedule_id');
           table.integer('people');
           table.foreign('pool_id').references('pool.id');
-          table.foreign('course_schedule_id').references('course_schedule.id');
+          table.foreign('schedule_id').references('course_schedule.id');
       })
   }).then(()=>{
       return knex.schema.createTable('boat_schedule',(table)=>{
@@ -116,10 +116,10 @@ exports.up = function(knex) {
           table.date('booking_date');
           table.integer('booking_session');
           table.integer('boat_id');
-          table.integer('course_schedule_id');
+          table.integer('schedule_id');
           table.integer('people');
           table.foreign('boat_id').references('boat.id');
-          table.foreign('course_schedule_id').references('course_schedule.id');
+          table.foreign('schedule_id').references('course_schedule.id');
       })
   }).then(()=>{
       return knex.schema.createTable('admin',(table)=>{

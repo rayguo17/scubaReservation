@@ -6,13 +6,15 @@ window.onload = () => {
     getClassList();
     setupTooltip();
     let addExistStudentBtn = document.getElementById('add-exist-student');
-    addExistStudentBtn.addEventListener('click',addExistStudent);
+    addExistStudentBtn.addEventListener('click', addExistStudent);
     let newStudentBtn = document.getElementById('new-student-btn');
-    newStudentBtn.addEventListener('click',addNewStudent);
-    setupClassroom();
-    let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
-    checkAvaliabilityBtn.addEventListener('click',checkAvaliability);
+    newStudentBtn.addEventListener('click', addNewStudent);
+
+
     setupClassroomList();
+    setupPoolList();
+    let bookModal = document.getElementById('bookClassroomModal');
+    bookModal.addEventListener('show.bs.modal', setupModal);
 }
 
 
@@ -99,19 +101,19 @@ let getClassList = async () => {
     }
     let orderGot = await Promise.all(promises);
     //console.log('orderGot', orderGot);
-    for(let i=0;i<classList.data.length;i++){
+    for (let i = 0; i < classList.data.length; i++) {
         let classId = classList.data[i].id
-        
+
         let instructorName = classList.data[i].instructor.full_name
         let outerCard = document.createElement('div');
         let classParent = document.getElementById('class-list');
         outerCard.classList.add('card');
-        outerCard.setAttribute('data-Class-id',classId);
-        outerCard.innerHTML = classTemplate({instructor_name:instructorName});
+        outerCard.setAttribute('data-Class-id', classId);
+        outerCard.innerHTML = classTemplate({ instructor_name: instructorName });
         //console.log('outerCard');
         let orderParent = outerCard.querySelector('#course-order-marker');
         let orderList = orderGot[i].data;
-        for(let j=0;j<orderList.length;j++){
+        for (let j = 0; j < orderList.length; j++) {
             let orderId = orderList[j].id;
             let orderName = orderList[j].full_name;
             let phone = orderList[j].phone_number;
@@ -119,13 +121,13 @@ let getClassList = async () => {
             let num_people = orderList[j].num_people;
             let innerCard = document.createElement('div');
             innerCard.classList.add('card');
-            innerCard.setAttribute('data-order-id',orderId);
+            innerCard.setAttribute('data-order-id', orderId);
             innerCard.innerHTML = orderListTemplate({
-                OrderName:orderName,
-                phone:phone,
-                email:email,
-                num:num_people,
-                orderId:orderId
+                OrderName: orderName,
+                phone: phone,
+                email: email,
+                num: num_people,
+                orderId: orderId
             });
             orderParent.appendChild(innerCard);
         }
@@ -137,11 +139,11 @@ let getClassList = async () => {
     setupStudentModal();
     setupClassroomBooking();
 }
-let setupTooltip = ()=>{
+let setupTooltip = () => {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 }
 
 let classTemplate = Handlebars.compile(`
@@ -200,13 +202,13 @@ let existStudentEmailTemplate = Handlebars.compile(`
 <input type="email" name="student_email" placeholder="email" class="col-8">
 `)
 
-let addExistStudent = ()=>{
+let addExistStudent = () => {
     let existStudentParent = document.getElementById('exist-student-list');
     let newExist = document.createElement('input');
     newExist.classList.add('col-8');
-    newExist.setAttribute('type','email');
-    newExist.setAttribute('name','student_email');
-    newExist.setAttribute('placeholder','email');
+    newExist.setAttribute('type', 'email');
+    newExist.setAttribute('name', 'student_email');
+    newExist.setAttribute('placeholder', 'email');
     existStudentParent.appendChild(newExist);
 }
 
@@ -221,7 +223,7 @@ let newStudentTemplate = Handlebars.compile(`
 <div class="card-body">
 <input type="text" placeholder="name" name="name">
 <input type="tel" placeholder="phone" name="phone">
-<input type="email" placeholder="emial" name="email">
+<input type="email" placeholder="email" name="email">
 <label for="mask">mask</label>
 <input type="checkbox" id="mask" name="mask">
 <label for="regulator">regulator</label>
@@ -233,16 +235,16 @@ let newStudentTemplate = Handlebars.compile(`
 <input type="text" placeholder="others" name="others">
 </div>
 `)
-let addNewStudent = ()=>{
+let addNewStudent = () => {
     let newStudentParent = document.getElementById('new-student-list');
     let newStudent = document.createElement('div');
-    newStudent.classList.add('card','card-info');
+    newStudent.classList.add('card', 'card-info');
     newStudent.innerHTML = newStudentTemplate();
     newStudentParent.appendChild(newStudent);
 }
-let setupStudentModal = ()=>{
+let setupStudentModal = () => {
     var addStudentModal = document.getElementById('addStudentModal');
-    addStudentModal.addEventListener('show.bs.modal',function(e){
+    addStudentModal.addEventListener('show.bs.modal', function (e) {
         var button = e.relatedTarget
         var orderId = button.getAttribute('data-bs-orderId');
         var orderInput = addStudentModal.querySelector('#hidden-orderId-input');
@@ -253,11 +255,11 @@ let setupStudentModal = ()=>{
         classCourseInput.value = classCourseId;
     })
 }
-let getStudent = async ()=>{
+let getStudent = async () => {
     let orderList = document.querySelectorAll('div[data-order-id]');
     let orderIdList = [];
     let getStudentPromises = [];
-    for(let i=0;i<orderList.length;i++){
+    for (let i = 0; i < orderList.length; i++) {
         let orderId = orderList[i].getAttribute('data-order-id')
         orderIdList.push(orderId);
 
@@ -267,34 +269,23 @@ let getStudent = async ()=>{
     }
     let resultStudent = await Promise.all(getStudentPromises);
     //console.log('getStudentPromises',resultStudent);
-    for(let i=0;i<resultStudent.length;i++){
+    for (let i = 0; i < resultStudent.length; i++) {
         let orderCard = document.querySelector(`div[data-order-id="${orderIdList[i]}"]`)
         //console.log(orderCard);
         let studentParent = orderCard.querySelector('#student-marker');
-        studentParent.innerHTML= studentTemplate({student:resultStudent[i].data});
+        studentParent.innerHTML = studentTemplate({ student: resultStudent[i].data });
 
     }
     //console.log(orderList);
 }
-let setupClassroom = async ()=>{
-    let getClassroom = await axios.get('/admin/api/classroom');
-    console.log(getClassroom);
-    let classroomParent = document.getElementById('classroom-picker');
-    console.log(classroomParent);
-    for(let i=0;i<getClassroom.data.length;i++){
-        let newOption = document.createElement('option');
-        newOption.value = getClassroom.data[i].id;
-        newOption.text = getClassroom.data[i].name;
-        classroomParent.appendChild(newOption);
-    }
-}
-let setupClassList = ()=>{
+
+let setupClassList = () => {
     let classCard = document.querySelectorAll('div[data-Class-id]');
     //console.log('setupClassList',classCard);
     let classId = [];
     let instructors = [];
     let classParent = document.getElementById('class-picker');
-    for(let i=0;i<classCard.length;i++){
+    for (let i = 0; i < classCard.length; i++) {
         let cardTitle = classCard[i].querySelector('.card-title');
         let instructor = cardTitle.textContent.slice(12);
         let newOption = document.createElement('option');
@@ -305,72 +296,161 @@ let setupClassList = ()=>{
 
 }
 
-let checkAvaliability = async ()=>{
-    let classroom_id = document.getElementById('classroom-picker').value;
-    let booking_date = document.getElementById('date-picker').value;
-    let booking_session = document.getElementById('session-picker').value;
-    let people = document.getElementById('number-input').value;
-    let bookBtn = document.getElementById('book-classroom-btn');
-    console.log(classroom_id,booking_date,booking_session,people);
-    let result = await axios.post('/admin/api/classroom/scheduleCheck',{
-        classroom_id,booking_date,booking_session,people
-    })
-    console.log(result.data);
-    if(result.data){
-        bookBtn.classList.remove('disabled');
-        //console.log(Swal);
-        let Toast = Swal.mixin({
-            toast:true,
-            position:'top-end',
-            showConfirmButton:false,
-            timer:3000,
-            
+let checkAvaliability = (url) => {
+    return async (e) => {
+        // console.log('e.target', e.target);
+        // console.log('e.currentTarget', e.currentTarget);
+        // console.log('param', url);
+        let item_id = document.getElementById('item-picker').value;
+        let booking_date = document.getElementById('date-picker').value;
+        let booking_session = document.getElementById('session-picker').value;
+        let people = document.getElementById('number-input').value;
+        let bookBtn = document.getElementById('book-item-btn');
+        console.log('check availability btn', item_id, booking_date, booking_session, people, url);
+        let result = await axios.post(url, {
+            item_id, booking_date, booking_session, people
         })
-        Toast.fire({
-            icon:'success',
-            title:'booking avaliable'
-        })
-    }else{
-        let Toast = Swal.mixin({
-            toast:true,
-            position:'top-end',
-            showConfirmButton:false,
-            timer:3000,
-            
-        })
-        Toast.fire({
-            icon:'error',
-            title:'booking unavaliable pls choose another time'
-        })
+        console.log(result.data);
+        if (result.data) {
+            bookBtn.classList.remove('disabled');
+            //console.log(Swal);
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'booking avaliable'
+            })
+        } else {
+            let Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+
+            })
+            Toast.fire({
+                icon: 'error',
+                title: 'booking unavaliable pls choose another time'
+            })
+        }
     }
 
+
+
 }
-let setupClassroomBooking = ()=>{
+let setupClassroomBooking = () => {
     let marker = document.getElementsByClassName('marker');
     console.log(marker[0].id)
     let classCourseId = marker[0].id;
     let hiddenInput = document.getElementById('book-classroom-hidden');
     hiddenInput.value = classCourseId;
 }
-let classroomListTemplate = Handlebars.compile(`
+let bookingListTemplate = Handlebars.compile(`
     <td>{{instructor}}</td>
-    <td>{{classroom}}</td>
+    <td>{{item}}</td>
     <td>{{booking_date}}</td>
     <td>{{booking_session}}</td>
     <td>{{num_people}}</td>
 `)
-let setupClassroomList = async ()=>{
+let setupClassroomList = async () => {
     let marker = document.getElementsByClassName('marker');
     let classCourseId = marker[0].id;
     let classroomTable = document.getElementById('classroom-list-table');
     let result = await axios.get(`/admin/api/classroom/course/${classCourseId}`);
     console.log(result);
+    for (let i = 0; i < result.data.length; i++) {
+        let date = new Date(result.data[i].booking_date);
+        date.setDate(date.getDate() + 1);
+        result.data[i].booking_date = date.toISOString().slice(0, 10)
+        let tr = document.createElement('tr');
+        tr.innerHTML = bookingListTemplate(result.data[i]);
+        classroomTable.appendChild(tr);
+    }
+}
+let setupPoolList = async()=>{
+    console.log('i am called')
+    let marker = document.getElementsByClassName('marker');
+    let classCourseId = marker[0].id;
+    let poolTable = document.getElementById('pool-list-table');
+    console.log('classCourseId',classCourseId);
+    let result = await axios.get(`/admin/api/pool/course/${classCourseId}`);
+    console.log('setupPoolList',result);
     for(let i=0;i<result.data.length;i++){
         let date = new Date(result.data[i].booking_date);
         date.setDate(date.getDate()+1);
-        result.data[i].booking_date = date.toISOString().slice(0,10)
+        result.data[i].booking_date = date.toISOString().slice(0,10);
         let tr = document.createElement('tr');
-        tr.innerHTML = classroomListTemplate(result.data[i]);
-        classroomTable.appendChild(tr);
+        tr.innerHTML = bookingListTemplate(result.data[i]);
+        poolTable.appendChild(tr);
+    }
+}
+let bookingTypeTemplate = Handlebars.compile(`
+<label for="item-picker" class="col-form-label">{{type}}:</label>
+<select name="bookingItem_id" id="item-picker">
+    <option value="" disabled selected>Choose your option</option>
+
+</select>
+`)
+let setupModal = async (event) => {
+    event.stopPropagation();
+
+    let button = event.relatedTarget;
+    let type = button.getAttribute('data-bs-type');
+    console.log('booking type', type);
+    console.log('should be modal', event.target);
+    let typeParent = event.target.querySelector('#booking-type-confirm');
+    let formParent = event.target.querySelector('#book-item-form')
+    if (type == 'classroom') {
+        typeParent.innerHTML = bookingTypeTemplate({ type: 'classroom' });
+        let optionParent = typeParent.querySelector('#item-picker');
+        await setupClassroom(optionParent,'/admin/api/classroom');
+        let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
+        let newCheckAvaliabilityBtn = checkAvaliabilityBtn.cloneNode(true);
+        checkAvaliabilityBtn.parentNode.replaceChild(newCheckAvaliabilityBtn,checkAvaliabilityBtn)
+        let url = '/admin/api/classroom/scheduleCheck';
+        newCheckAvaliabilityBtn.addEventListener('click', checkAvaliability(url));
+        formParent.setAttribute('action','/admin/api/classroom/schedule');
+    }else if(type=='pool'){
+        typeParent.innerHTML = bookingTypeTemplate({type:'pool'});
+        let optionParent = typeParent.querySelector("#item-picker");
+        //console.log('inside pool',optionParent);
+        await setupPool(optionParent,'/admin/api/pool');
+        
+        let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
+        let newCheckAvaliabilityBtn = checkAvaliabilityBtn.cloneNode(true);
+        checkAvaliabilityBtn.parentNode.replaceChild(newCheckAvaliabilityBtn,checkAvaliabilityBtn)
+        let url = '/admin/api/pool/scheduleCheck';
+        newCheckAvaliabilityBtn.addEventListener('click', checkAvaliability(url));
+        formParent.setAttribute('action','/admin/api/pool/schedule');
+    }
+
+}
+let setupPool = async (optionParent,url)=>{
+    let getPool = await axios.get(url);
+    //console.log(getPool.data);
+    let poolParent = optionParent;
+    //console.log('pool setup',poolParent);
+    for(let i=0;i<getPool.data.length;i++){
+        let newOption = document.createElement('option');
+        newOption.value = getPool.data[i].id;
+        newOption.text = getPool.data[i].name;
+        poolParent.appendChild(newOption);
+    }
+}
+let setupClassroom = async (optionParent,url) => {
+    let getClassroom = await axios.get(url);
+    //console.log(getClassroom);
+    let classroomParent = optionParent
+    //console.log(classroomParent);
+    for (let i = 0; i < getClassroom.data.length; i++) {
+        let newOption = document.createElement('option');
+        newOption.value = getClassroom.data[i].id;
+        newOption.text = getClassroom.data[i].name;
+        classroomParent.appendChild(newOption);
     }
 }

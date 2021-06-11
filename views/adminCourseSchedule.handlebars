@@ -98,7 +98,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-3">
                                     <button class="btn btn-secondary" data-bs-toggle="modal"
-                                        data-bs-target="#bookClassroomModal">Book classroom</button>
+                                        data-bs-target="#bookClassroomModal" data-bs-type="classroom">Book classroom</button>
 
                                 </div>
                             </div>
@@ -127,10 +127,31 @@
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                         class="fas fa-minus"></i></button>
                             </div>
-
+                            
                         </div>
                         <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <button class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#bookClassroomModal" data-bs-type="pool">Book Pools</button>
 
+                                </div>
+                                
+                            </div>
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Instructor</th>
+                                        <th>classroom</th>
+                                        <th>booking date</th>
+                                        <th>booking session</th>
+                                        <th>num people</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pool-list-table">
+
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -260,40 +281,40 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="bookClassroomModalLabel">book classroom</h5>
+                                <h5 class="modal-title" id="bookClassroomModalLabel">booking</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="book-classroom-form" method="POST" action="/admin/api/classroom/schedule">
+                                <form id="book-item-form" method="POST" >
                                     <div class="mb-2">
                                         <label for="class-picker" class="col-form-label">Class:</label>
                                         <select name="schedule_id" id="class-picker">
                                             <option value="" disabled selected>Choose your option</option>
                                         </select>
                                     </div>
-                                    <div class="mb-2">
+                                    <div class="mb-2" id="booking-type-confirm">
                                         <label for="classroom-picker" class="col-form-label">classroom:</label>
                                         <select name="classroom_id" id="classroom-picker">
                                             <option value="" disabled selected>Choose your option</option>
-                                            
+
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="classroom-picker" class="col-form-label">date:</label>
+                                        <label for="date-picker" class="col-form-label">date:</label>
                                         <input type="date" name="booking_date" id="date-picker">
                                     </div>
                                     <div class="mb-2">
-                                        <label for="classroom-picker" class="col-form-label">session:</label>
+                                        <label for="session-picker" class="col-form-label">session:</label>
                                         <select name="booking_session" id="session-picker">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
-                                            <option value="3">3</option> 
+                                            <option value="3">3</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="classroom-picker" class="col-form-label">number of people:</label>
+                                        <label for="number-input" class="col-form-label">number of people:</label>
                                         <input type="number" name="people" id="number-input">
                                     </div>
                                     <input type="hidden" name="class_course_id" id="book-classroom-hidden">
@@ -301,8 +322,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-info" id="check-availability-btn">check availability</button>
-                                <button type="submit" id="book-classroom-btn" class="btn btn-primary disabled" form="book-classroom-form">book</button>
+                                <button type="button" class="btn btn-info" id="check-availability-btn">check
+                                    availability</button>
+                                <button type="submit" id="book-item-btn" class="btn btn-primary disabled"
+                                    form="book-item-form">book</button>
                             </div>
                         </div>
                     </div>
@@ -310,4 +333,4 @@
             </div>
         </div>
     </div>
-</div>        
+</div>
