@@ -1,0 +1,59 @@
+/* $time: 0.3s; */
+
+.galleryContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bdd8f1;
+  margin-top: 4em;
+}
+
+#galleryTop {
+  margin-top: 85em;
+}
+
+.gallery {
+  justify-content: center;
+  align-items: center;
+  display: grid; 
+  grid-template-rows: repeat(5, 19vh);             
+  grid-template-columns: repeat(4, 22.6vw);
+  transition: all 0.3s ease(gravity);
+  background-color: #82a6cb;
+  border-radius: 10px;
+  padding: 0.25em;
+  cursor: zoom-in;
+  grid-gap: .25em; 
+  order: 40;
+}
+
+
+.fish {
+  margin-top: -4em;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: all 0.3s/2 ease(downhill);
+  position: relative;
+  box-shadow: 0 0 0 #0000;
+  opacity: 0.67;
+  filter: sepia(80%) hue-rotate(180deg);
+}
+
+  .gallery :hover {
+    opacity: 1;
+    z-index: 1;
+    box-shadow: 1em 1em 1em #0004;
+    transition: all 0.3s ease(downhill);
+    filter: sepia(0%) hue-rotate(0deg);
+    border-radius: 5px;
+    width: 120%;
+    height: 120%;
+    /* left: -100%;
+    top: -100%; */
+  }
+ 
+

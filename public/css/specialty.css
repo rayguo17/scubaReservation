@@ -3,7 +3,7 @@
   width: 300px;
 }
 
-.box:hover {
+.box {
   height: 300px;
   width: 300px;
   font-size: 16px;
@@ -13,6 +13,10 @@
   background-size: 440px 340px;
   object-fit: scale-down;
   border: 1px #5a5a5a solid;
+}
+
+.box:hover{
+  background-size: cover;
 }
 
 /* .aware:hover {
@@ -131,3 +135,4 @@
 
 
 
+.

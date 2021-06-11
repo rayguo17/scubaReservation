@@ -1,11 +1,15 @@
 .picContainer {
   /* height: 600px;
   width: 50%; */
-  margin-top: -4em;
+  margin-top: 1em;
   justify-content: flex-end;
   margin-left: auto;
   position:relative;
   float: right;
+}
+
+.heading{
+    margin-top: 3em;
 }
 
 .morse {

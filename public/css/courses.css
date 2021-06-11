@@ -2,6 +2,13 @@
   cursor: pointer;
 }
 
+.box:hover{
+  background-size: 450px 400px;
+  object-fit: scale-down
+  /* background-size: 100% 90%; */
+  /* transform: scale(1.2); */
+}
+
 .juniorContainer {
   display: flex;
   flex-wrap: wrap;
@@ -17,7 +24,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid #0a0a0a;
+  object-fit:scale-down;
 }
+
+
 
 #junior {
   background-image: url(/img-course/Junior-Open-water-Diver.jpg);

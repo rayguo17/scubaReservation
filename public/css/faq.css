@@ -1,0 +1,15 @@
+.faqContainer {
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+    background: linear-gradient(90deg, #f59baa 50%, #16e0e0 50%);
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-top: 2em;
+}
+
+/* .faqContainer {
+    flex-wrap: column wrap;
+    width: 60%;
+    background-color: #f0576b;
+} */

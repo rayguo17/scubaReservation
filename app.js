@@ -52,9 +52,7 @@ app.use('/admin/api/pool',new AdminPoolRouter(new AdminPoolService(knex)).router
 app.get("/", (request, response) => {
     response.render("index");
 });
-app.get("/fun-diving", (request, response) => {
-    response.render("fundiving");
-});
+
 
 app.get("/courses-junior", (request, response) => {
   response.render("coursesJunior");

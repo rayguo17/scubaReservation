@@ -11,6 +11,10 @@
   border: 1px solid #0a0a0a;
 }
 
+.box:hover{
+  background-size: 400px 300px;
+  object-fit: scale-down
+} 
 
 .proLevelContainer {
   display: flex;
