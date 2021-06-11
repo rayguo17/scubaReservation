@@ -26,6 +26,18 @@ class adminPoolService{
     getPoolBooking(courseId){
         return this.knex('pool_schedule').where('schedule_id',courseId).select('*');
     }
+    getAllSchedule(){
+        return this.knex('pool_schedule').select('*');
+    }
+    getScheduleById(scheduleId){
+        return this.knex('course_schedule').where('id',scheduleId).select('*');
+    }
+    getClassCourseById(classId){
+        return this.knex('class_course').where('id',classId).select('*');
+    }
+    deleteSchedule(bookingId){
+        return this.knex('pool_schedule').where('id',bookingId).del().returning('booking_date');
+    }
 }
 
 module.exports = adminPoolService;
