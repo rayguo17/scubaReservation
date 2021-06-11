@@ -29,6 +29,10 @@ class AdminViewRouter {
             
             res.render('adminClassroom',{layout:'admin'});
         })
+        router.get('/boat',isLoggedIn,(req,res)=>{
+            
+            res.render('adminBoat',{layout:'admin'});
+        })
         router.post('/login',passport.authenticate('admin-login',{
             successRedirect:'/admin/course',
             failureRedirect:'/admin/signup'

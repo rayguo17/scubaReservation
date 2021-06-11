@@ -42,6 +42,7 @@ exports.up = function(knex) {
           table.increments('id');
           table.integer('class_course_id');
           table.foreign('class_course_id').references('class_course.id');
+          table.foreign('class_course_id').references('boat_schedule.course_schedule_id');
           table.integer('instructor_id');
           table.foreign('instructor_id').references('instructors.id');
       })
