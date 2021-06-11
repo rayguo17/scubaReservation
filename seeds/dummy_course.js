@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return Promise.all([knex('class_course').del(),knex('instructors').del(),knex('course').del(),knex('classroom').del()])
+  return Promise.all([knex('class_course').del(),knex('instructors').del(),knex('course').del(),knex('classroom').del(),knex('pool').del(),knex('boat').del()])
     .then(function () {
       // Inserts seed entries
       return knex('instructors').insert([
@@ -33,6 +33,18 @@ exports.seed = function(knex) {
             {id:5,start_date:new Date(Date.now()+1000*60*60*24*20),course_id:5}
           ])
     }).then(()=>{
+      return knex("pool").insert([
+        {id:1,capacity:30,name:'Pok Fu Lam Standford Pool'},
+          {id:2,capacity:20,name:'Morse Park Swimming Pool'}
+      ])
+    }).then(()=>{
+      return knex('boat').insert([
+        {id:1, capacity:30,name:'Black Pearl'},
+        {id:2, capacity:10,name:'The Thousand Sunny'},
+        {id:3,capacity:15,name:'aquaholic'}
+      ])
+    })
+    .then(()=>{
       // return knex('course_schedule').insert([
       //   {id:1,class_course_id:1,instructor_id:1},
       //   {id:2,class_course_id:1,instructor_id:2},

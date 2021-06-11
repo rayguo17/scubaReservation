@@ -58,13 +58,13 @@ class adminBoatRouter {
             try {
                 console.log('body', req.body);
                 let num = await this.service.getNumSchedule(req.body);
-                let classCapacity = await this.service.getBoatCapacity(req.body.boat_id);
-                console.log(classCapacity);
+                let boatCapacity = await this.service.getBoatCapacity(req.body.item_id);
+                console.log(boatCapacity);
                 console.log(num);
-                let forNum = num[0].sum + parseInt(req.body.people);
+                let forNum = parseInt(num[0].sum) + parseInt(req.body.people);
                 console.log('forecast num', forNum);
-                console.log('capacity',classCapacity[0].capacity);
-                if (forNum > classCapacity[0].capacity) {
+                console.log('capacity',boatCapacity[0].capacity);
+                if (forNum > boatCapacity[0].capacity) {
                     res.send(false);
                 } else {
                     res.send(true);
@@ -80,9 +80,11 @@ class adminBoatRouter {
                 console.log('book boat', req.body);
                 let classCourseId = req.body.class_course_id;
                 delete req.body.class_course_id;
+                req.body.boat_id = req.body.bookingItem_id;
+                delete req.body.bookingItem_id;
                 let result = await this.service.bookBoat(req.body);
                 console.log(result);
-                res.redirect(`/admin/boat/schedule/${classCourseId}`)
+                res.redirect(`/admin/course/schedule/${classCourseId}`)
             } catch (error) {
                 console.log(error)
             }
@@ -114,7 +116,8 @@ class adminBoatRouter {
                             instructor: instructorResult[j][0].full_name,
                             booking_date: boatResult[j][k].booking_date,
                             booking_session: boatResult[j][k].booking_session,
-                            num_people: boatResult[j][k].people
+                            num_people: boatResult[j][k].people,
+                            boat_id:boatResult[j][k].boat_id
                         }
                         result.push(newResult);
                     }

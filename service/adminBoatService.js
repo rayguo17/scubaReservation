@@ -9,7 +9,7 @@ class adminBoatService{
         return this.knex('boat_schedule').select('*');
     }
     getNumSchedule(boatSchedule){
-        return this.knex('boat_schedule').where('boat_id',boatSchedule.boat_id)
+        return this.knex('boat_schedule').where('boat_id',boatSchedule.item_id)
                     .where('booking_date',boatSchedule.booking_date)
                     .where('booking_session',boatSchedule.booking_session).sum('people')
     }
@@ -27,7 +27,7 @@ class adminBoatService{
 
     }
     getBoatBooking(courseId){
-        return this.knex('boat_schedule').where('course_schedule_id',courseId);
+        return this.knex('boat_schedule').where('schedule_id',courseId);
         
     }
     getScheduleById(scheduleId){
