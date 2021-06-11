@@ -83,16 +83,16 @@ tr:nth-child(even) {
 }
 
 .pic {
- height: 250px;
- width: 350px;
+ height: 240px;
+ width: 450px;
  overflow: hidden;
 }
-.map {
- height: auto;
- width: 350px; 
- /* flex-basis: 350px; */
-} 
 
+
+.map-responsive {
+  width: 100px;
+  height: auto;
+}
 
 .checkboxes label{
     display: inline-block;
@@ -133,3 +133,5 @@ tr:nth-child(even) {
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
 }
+
+
