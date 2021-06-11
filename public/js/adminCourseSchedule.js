@@ -9,12 +9,12 @@ window.onload = () => {
     addExistStudentBtn.addEventListener('click', addExistStudent);
     let newStudentBtn = document.getElementById('new-student-btn');
     newStudentBtn.addEventListener('click', addNewStudent);
-
-
     setupClassroomList();
     setupPoolList();
+    setupBoatList();
     let bookModal = document.getElementById('bookClassroomModal');
     bookModal.addEventListener('show.bs.modal', setupModal);
+    bookModal.addEventListener('hide.bs.modal',setupHideModal);
 }
 
 
@@ -373,13 +373,13 @@ let setupClassroomList = async () => {
     }
 }
 let setupPoolList = async()=>{
-    console.log('i am called')
+    //console.log('i am called')
     let marker = document.getElementsByClassName('marker');
     let classCourseId = marker[0].id;
     let poolTable = document.getElementById('pool-list-table');
-    console.log('classCourseId',classCourseId);
+    //console.log('classCourseId',classCourseId);
     let result = await axios.get(`/admin/api/pool/course/${classCourseId}`);
-    console.log('setupPoolList',result);
+    //console.log('setupPoolList',result);
     for(let i=0;i<result.data.length;i++){
         let date = new Date(result.data[i].booking_date);
         date.setDate(date.getDate()+1);
@@ -388,6 +388,27 @@ let setupPoolList = async()=>{
         tr.innerHTML = bookingListTemplate(result.data[i]);
         poolTable.appendChild(tr);
     }
+}
+let setupBoatList = async ()=>{
+    let marker = document.getElementsByClassName('marker');
+    let classCourseId = marker[0].id;
+    let boatTable = document.getElementById('boat-list-table');
+    let result = await axios.get(`/admin/api/boat/course/${classCourseId}`);
+    console.log('setupBoatList',result);
+    for(let i=0;i<result.data.length;i++){
+        let date = new Date(result.data[i].booking_date);
+        date.setDate(date.getDate()+1);
+        result.data[i].booking_date = date.toISOString().slice(0,10);
+        let tr = document.createElement('tr');
+        tr.innerHTML = bookingListTemplate(result.data[i]);
+        boatTable.appendChild(tr);
+    }
+
+}
+let setupHideModal = (event)=>{
+    console.log('modal is hidden');
+    let bookBtn = document.getElementById('book-item-btn');
+    bookBtn.classList.add('disabled');
 }
 let bookingTypeTemplate = Handlebars.compile(`
 <label for="item-picker" class="col-form-label">{{type}}:</label>
@@ -420,13 +441,23 @@ let setupModal = async (event) => {
         let optionParent = typeParent.querySelector("#item-picker");
         //console.log('inside pool',optionParent);
         await setupPool(optionParent,'/admin/api/pool');
-        
         let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
         let newCheckAvaliabilityBtn = checkAvaliabilityBtn.cloneNode(true);
         checkAvaliabilityBtn.parentNode.replaceChild(newCheckAvaliabilityBtn,checkAvaliabilityBtn)
         let url = '/admin/api/pool/scheduleCheck';
         newCheckAvaliabilityBtn.addEventListener('click', checkAvaliability(url));
         formParent.setAttribute('action','/admin/api/pool/schedule');
+    }else if(type=='boat'){
+        typeParent.innerHTML = bookingTypeTemplate({type:'boat'});
+        let optionParent = typeParent.querySelector("#item-picker");
+        //console.log('inside pool',optionParent);
+        await setupPool(optionParent,'/admin/api/boat');
+        let checkAvaliabilityBtn = document.getElementById('check-availability-btn');
+        let newCheckAvaliabilityBtn = checkAvaliabilityBtn.cloneNode(true);
+        checkAvaliabilityBtn.parentNode.replaceChild(newCheckAvaliabilityBtn,checkAvaliabilityBtn)
+        let url = '/admin/api/boat/scheduleCheck';
+        newCheckAvaliabilityBtn.addEventListener('click', checkAvaliability(url));
+        formParent.setAttribute('action','/admin/api/boat/schedule');        
     }
 
 }
@@ -452,5 +483,16 @@ let setupClassroom = async (optionParent,url) => {
         newOption.value = getClassroom.data[i].id;
         newOption.text = getClassroom.data[i].name;
         classroomParent.appendChild(newOption);
+    }
+}
+let setupBoats = async (optionParent,url)=>{
+    let getBoat = await axios.get(url);
+    let boatParent = optionParent;
+    console.log(getBoat);
+    for(let i=0;i<getBoat.data.length;i++){
+        let newOption = document.createElement('option');
+        newOption.value = getBoat.data[i].id;
+        newOption.text = getBoat.data[i].name;
+        boatParent.appendChild(newOption);
     }
 }

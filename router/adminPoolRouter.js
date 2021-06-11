@@ -44,10 +44,10 @@ class adminPoolRouter{
         })
         router.get('/course/:id',async (req,res)=>{
             try {
-                console.log('course',req.params);
+                //console.log('course',req.params);
                 let classCourseId = req.params.id;
                 let classList = await this.service.getClassList(classCourseId);
-                console.log('classList',classList);
+                //console.log('classList',classList);
                 let instructorNamePromises = [];
                 let poolListPromises = [];
                 for(let i=0;i<classList.length;i++){
@@ -58,8 +58,8 @@ class adminPoolRouter{
                 }
                 let poolResult = await Promise.all(poolListPromises);
                 let instructorResult = await Promise.all(instructorNamePromises);
-                console.log('poolResult', poolResult);
-                console.log('instructorResult', instructorResult);
+                //console.log('poolResult', poolResult);
+                //console.log('instructorResult', instructorResult);
                 let result = [];
                 for(let j =0;j<instructorResult.length;j++){
                     for(let k=0;k<poolResult[j].length;k++){
@@ -82,7 +82,7 @@ class adminPoolRouter{
                         }
                     }
                 }
-                console.log('total',result);
+                //console.log('total',result);
                 res.send(result);
             } catch (error) {
                 console.log('getting pool schedule by class course id',error);

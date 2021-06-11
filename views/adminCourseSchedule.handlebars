@@ -26,46 +26,7 @@
                                 data-bs-target="#addClassModal">add Class</button>
                         </div>
                     </div>
-                    {{!-- <div class="card" data-Class-id="1">
-                        <div class="card-header">
-                            <h3 class="card-title">Instructor:Dave</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card" data-order-id="1">
-                                <div class="card-header">
-                                    <h3 class="card-title" data-bs-toggle="tooltip" data-bs-placement="right"
-                                        title="phone:12345 email:sim@sim.com">OrderName</h3>
-                                    <div class="card-tools">
-                                        <button class="btn btn-tool">add student</button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>name</th>
-                                                <th>phone</th>
-                                                <th>email</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>ray</th>
-                                                <th>12345</th>
-                                                <th>ray@ray.com</th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+
 
                 </div>
             </div>
@@ -74,7 +35,7 @@
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Booking
+                        Classroom
                     </h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -83,253 +44,252 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                Classroom
-                            </h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i></button>
-                            </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <button class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#bookClassroomModal" data-bs-type="classroom">Book
+                                classroom</button>
 
                         </div>
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <button class="btn btn-secondary" data-bs-toggle="modal"
-                                        data-bs-target="#bookClassroomModal" data-bs-type="classroom">Book classroom</button>
+                    </div>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Instructor</th>
+                                <th>classroom</th>
+                                <th>booking date</th>
+                                <th>booking session</th>
+                                <th>num people</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classroom-list-table">
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Pools
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i></button>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <button class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#bookClassroomModal" data-bs-type="pool">Book Pools</button>
+
+                        </div>
+
+                    </div>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Instructor</th>
+                                <th>classroom</th>
+                                <th>booking date</th>
+                                <th>booking session</th>
+                                <th>num people</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pool-list-table">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Boats
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                class="fas fa-minus"></i></button>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <button class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#bookClassroomModal" data-bs-type="boat">Book Boats</button>
+
+                        </div>
+
+                    </div>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Instructor</th>
+                                <th>classroom</th>
+                                <th>booking date</th>
+                                <th>booking session</th>
+                                <th>num people</th>
+                            </tr>
+                        </thead>
+                        <tbody id="boat-list-table">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addClassModalLabel">Add Class</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/api/course/class" method="POST" id="add-class-form">
+                    <div class="mb-3">
+                        <label class="col-form-label">Instructor: </label>
+                        <select name="instructor_id" id="instructor-picker">
+                            <option value="" disabled selected>Choose your option</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="order-form">
+                        {{!-- //TODO: need to handle if two group of people in one class --}}
+                        <label for="message-text" class="col-form-label">add order:</label>
+                        <button type="button" class="btn btn-primary" id="add-order-btn"><i class="fas fa-plus"></i>
+                            add order</button>
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Order
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i></button>
                                 </div>
+
                             </div>
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Instructor</th>
-                                        <th>classroom</th>
-                                        <th>booking date</th>
-                                        <th>booking session</th>
-                                        <th>num people</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="classroom-list-table">
+                            <div class="card-body">
+                                <fieldset>
+                                    <input placeholder="Customer name" type="text" tabindex="1" name="full_name"
+                                        required>
+                                </fieldset>
+                                <fieldset>
+                                    <input placeholder="Customer Email Address" type="email" tabindex="2" name="email"
+                                        required>
+                                </fieldset>
+                                <fieldset>
+                                    <input placeholder="Customer Phone Number" type="tel" tabindex="3"
+                                        name="phone_number" required>
+                                </fieldset>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                Pools
-                            </h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i></button>
-                            </div>
-                            
-                        </div>
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <button class="btn btn-secondary" data-bs-toggle="modal"
-                                        data-bs-target="#bookClassroomModal" data-bs-type="pool">Book Pools</button>
-
-                                </div>
-                                
-                            </div>
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Instructor</th>
-                                        <th>classroom</th>
-                                        <th>booking date</th>
-                                        <th>booking session</th>
-                                        <th>num people</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pool-list-table">
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                Boats
-                            </h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i></button>
-                            </div>
-
-                        </div>
-                        <div class="card-body">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addClassModalLabel">Add Class</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/admin/api/course/class" method="POST" id="add-class-form">
-                                    <div class="mb-3">
-                                        <label class="col-form-label">Instructor: </label>
-                                        <select name="instructor_id" id="instructor-picker">
-                                            <option value="" disabled selected>Choose your option</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3" id="order-form">
-                                        {{!-- //TODO: need to handle if two group of people in one class --}}
-                                        <label for="message-text" class="col-form-label">add order:</label>
-                                        <button type="button" class="btn btn-primary" id="add-order-btn"><i
-                                                class="fas fa-plus"></i>
-                                            add order</button>
-                                        <div class="card card-info">
-                                            <div class="card-header">
-                                                <h3 class="card-title">
-                                                    Order
-                                                </h3>
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-tool"
-                                                        data-card-widget="collapse"><i
-                                                            class="fas fa-minus"></i></button>
-                                                </div>
-
-                                            </div>
-                                            <div class="card-body">
-                                                <fieldset>
-                                                    <input placeholder="Customer name" type="text" tabindex="1"
-                                                        name="full_name" required>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <input placeholder="Customer Email Address" type="email"
-                                                        tabindex="2" name="email" required>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <input placeholder="Customer Phone Number" type="tel" tabindex="3"
-                                                        name="phone_number" required>
-                                                </fieldset>
-
-                                                <fieldset>
-                                                    <input placeholder="num of people" tabindex="4" name="num_people"
-                                                        required></input>
-                                                </fieldset>
-                                                <input type="hidden" name="class_course_id" value="{{class_course_id}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" id="submit-add-class"
-                                    form="add-class-form">Save
-                                    class</button>
+                                <fieldset>
+                                    <input placeholder="num of people" tabindex="4" name="num_people" required></input>
+                                </fieldset>
+                                <input type="hidden" name="class_course_id" value="{{class_course_id}}">
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudnetModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addStudentModalLabel">add Student</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="submit-add-class" form="add-class-form">Save
+                    class</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudnetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addStudentModalLabel">add Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                                <form action="/admin/api/course/class/student" method="POST" id="student-form">
-                                    <div class="row mb-2 pl-2" id="exist-student-list">
-                                        <input type="email" name="student_email" placeholder="email" class="col-8">
-                                        <button type="button" class="btn btn-tool col-1" id="add-exist-student"><i
-                                                class="fas fa-plus"></i></button>
-                                        <input type="hidden" name="orderId" id="hidden-orderId-input">
-                                        <input type="hidden" name="class_course_id" id="hidden-class-course-id-input">
-                                    </div>
-
-
-                                    <button type="button" class="btn btn-secondary mb-2" id="new-student-btn">new
-                                        student</button>
-                                    <div id="new-student-list">
-
-                                    </div>
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" form="student-form">Save student</button>
-                            </div>
-                        </div>
+                <form action="/admin/api/course/class/student" method="POST" id="student-form">
+                    <div class="row mb-2 pl-2" id="exist-student-list">
+                        <input type="email" name="student_email" placeholder="email" class="col-8">
+                        <button type="button" class="btn btn-tool col-1" id="add-exist-student"><i
+                                class="fas fa-plus"></i></button>
+                        <input type="hidden" name="orderId" id="hidden-orderId-input">
+                        <input type="hidden" name="class_course_id" id="hidden-class-course-id-input">
                     </div>
-                </div>
-                <div class="modal fade" id="bookClassroomModal" tabindex="-1" aria-labelledby="bookClassroomModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="bookClassroomModalLabel">booking</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="book-item-form" method="POST" >
-                                    <div class="mb-2">
-                                        <label for="class-picker" class="col-form-label">Class:</label>
-                                        <select name="schedule_id" id="class-picker">
-                                            <option value="" disabled selected>Choose your option</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-2" id="booking-type-confirm">
-                                        <label for="classroom-picker" class="col-form-label">classroom:</label>
-                                        <select name="classroom_id" id="classroom-picker">
-                                            <option value="" disabled selected>Choose your option</option>
 
-                                        </select>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="date-picker" class="col-form-label">date:</label>
-                                        <input type="date" name="booking_date" id="date-picker">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="session-picker" class="col-form-label">session:</label>
-                                        <select name="booking_session" id="session-picker">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="number-input" class="col-form-label">number of people:</label>
-                                        <input type="number" name="people" id="number-input">
-                                    </div>
-                                    <input type="hidden" name="class_course_id" id="book-classroom-hidden">
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-info" id="check-availability-btn">check
-                                    availability</button>
-                                <button type="submit" id="book-item-btn" class="btn btn-primary disabled"
-                                    form="book-item-form">book</button>
-                            </div>
-                        </div>
+
+                    <button type="button" class="btn btn-secondary mb-2" id="new-student-btn">new
+                        student</button>
+                    <div id="new-student-list">
+
                     </div>
-                </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="student-form">Save student</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="bookClassroomModal" tabindex="-1" aria-labelledby="bookClassroomModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookClassroomModalLabel">booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="book-item-form" method="POST">
+                    <div class="mb-2">
+                        <label for="class-picker" class="col-form-label">Class:</label>
+                        <select name="schedule_id" id="class-picker">
+                            <option value="" disabled selected>Choose your option</option>
+                        </select>
+                    </div>
+                    <div class="mb-2" id="booking-type-confirm">
+                        <label for="classroom-picker" class="col-form-label">classroom:</label>
+                        <select name="classroom_id" id="classroom-picker">
+                            <option value="" disabled selected>Choose your option</option>
+
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="date-picker" class="col-form-label">date:</label>
+                        <input type="date" name="booking_date" id="date-picker">
+                    </div>
+                    <div class="mb-2">
+                        <label for="session-picker" class="col-form-label">session:</label>
+                        <select name="booking_session" id="session-picker">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="number-input" class="col-form-label">number of people:</label>
+                        <input type="number" name="people" id="number-input">
+                    </div>
+                    <input type="hidden" name="class_course_id" id="book-classroom-hidden">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" id="check-availability-btn">check
+                    availability</button>
+                <button type="submit" id="book-item-btn" class="btn btn-primary disabled"
+                    form="book-item-form">book</button>
             </div>
         </div>
     </div>
