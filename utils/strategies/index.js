@@ -1,12 +1,12 @@
 const passport = require('passport');
-const localLogin = require('./localStrategy').Login;
-const LocalSignup = require('./localStrategy').Signup;
+const localLogin = require('./adminStrategy').Login;
+const LocalSignup = require('./adminStrategy').Signup;
 
 const serializeUser = require('./serializeDeserializeUser').serializeUser;
 const deserializeUser = require('./serializeDeserializeUser').deserializeUser;
 
-passport.use('local-login',localLogin);
-passport.use('local-signup',LocalSignup);
+passport.use('admin-login',localLogin);
+passport.use('admin-signup',LocalSignup);
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 

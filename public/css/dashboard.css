@@ -1,0 +1,49 @@
+.card-course{
+    background-color:  rgb(0, 123, 255, .9);
+    background-image: url(/img/dashboard_card_course.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+    background-blend-mode: overlay;
+    cursor: pointer;
+}
+
+.card-boat{
+    background-color:  rgb(40, 167, 69, .9);
+    background-image: url(/img/dashboard_card_boat.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+    background-blend-mode: overlay;
+    cursor: pointer;
+}
+
+.card-classroom{
+    background-color:  rgb(23, 162, 184, .9);
+    background-image: url(/img/dashboard_card_classroom.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+    background-blend-mode: soft-light;
+    cursor: pointer;
+}
+
+.card-pool{
+    background-color:  rgb(255, 197, 3, .9);
+    background-image: url(/img/dashboard_card_pool.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+    background-blend-mode: overlay;
+    cursor: pointer;
+}
+
+.card-instructor{
+    background-color:  rgb(220, 53, 69, .9);
+    background-image: url(/img/dashboard_card_instructor.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+    background-blend-mode: overlay;
+    cursor: pointer;
+}

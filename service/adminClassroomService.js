@@ -9,7 +9,7 @@ class adminClassroomService{
         return this.knex('classroom_schedule').select('*');
     }
     getNumSchedule(classSchedule){
-        return this.knex('classroom_schedule').where('classroom_id',classSchedule.classroom_id)
+        return this.knex('classroom_schedule').where('classroom_id',classSchedule.item_id)
                     .where('booking_date',classSchedule.booking_date)
                     .where('booking_session',classSchedule.booking_session).sum('people')
     }

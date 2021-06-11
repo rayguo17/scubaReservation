@@ -42,6 +42,7 @@ exports.up = function(knex) {
           table.increments('id');
           table.integer('class_course_id');
           table.foreign('class_course_id').references('class_course.id');
+          
           table.integer('instructor_id');
           table.foreign('instructor_id').references('instructors.id');
       })
@@ -105,10 +106,10 @@ exports.up = function(knex) {
           table.date('booking_date');
           table.integer('booking_session');
           table.integer('pool_id');
-          table.integer('course_schedule_id');
+          table.integer('schedule_id');
           table.integer('people');
           table.foreign('pool_id').references('pool.id');
-          table.foreign('course_schedule_id').references('course_schedule.id');
+          table.foreign('schedule_id').references('course_schedule.id');
       })
   }).then(()=>{
       return knex.schema.createTable('boat_schedule',(table)=>{
@@ -116,15 +117,22 @@ exports.up = function(knex) {
           table.date('booking_date');
           table.integer('booking_session');
           table.integer('boat_id');
-          table.integer('course_schedule_id');
+          table.integer('schedule_id');
           table.integer('people');
           table.foreign('boat_id').references('boat.id');
-          table.foreign('course_schedule_id').references('course_schedule.id');
+          table.foreign('schedule_id').references('course_schedule.id');
+      })
+  }).then(()=>{
+      return knex.schema.createTable('admin',(table)=>{
+          table.increments('id');
+          table.string('username');
+          table.string('hash');
+          table.string('email');
       })
   })
 };
 
 exports.down = function(knex) {
   return knex.schema.dropTable('boat_schedule').dropTable('pool_schedule').dropTable('classroom_schedule').dropTable('classroom').dropTable('student_order').dropTable('student_gear').dropTable('student').dropTable('course_order').dropTable('course_schedule').dropTable('class_course')
-                .dropTable('course').dropTable('instructors').dropTable('pool').dropTable('boat');
+                .dropTable('course').dropTable('instructors').dropTable('pool').dropTable('boat').dropTable('admin');
 };

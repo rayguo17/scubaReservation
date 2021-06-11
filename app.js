@@ -16,10 +16,14 @@ const ViewRouter = require('./router/viewRouter');
 const AdminViewRouter = require('./router/adminViewRouter');
 const AdminCourseService = require('./service/adminCourseService');
 const AdminCourseRouter = require('./router/adminCourseRouter');
+const AdminBoatService = require('./service/adminBoatService');
+const AdminBoatRouter = require('./router/adminBoatRouter');
 const AdminClassroomService = require('./service/adminClassroomService');
 const AdminClassroomRouter = require('./router/adminClassroomRouter');
 const AdminInstructorService = require('./service/adminInstructorService');
 const AdminInstructorRouter = require('./router/adminInstructorRouter');
+const AdminPoolService = require('./service/adminPoolService');
+const AdminPoolRouter = require('./router/adminPoolRouter');
 
 const port = process.env.PORT || 8000;
 const app = express();
@@ -41,8 +45,10 @@ app.use(passport.session());
 app.use('/',new ViewRouter().router());
 app.use('/admin',new AdminViewRouter(knex).router());
 app.use('/admin/api/course',new AdminCourseRouter(new AdminCourseService(knex)).router());
+app.use('/admin/api/boat',new AdminBoatRouter(new AdminBoatService(knex)).router());
 app.use('/admin/api/classroom',new AdminClassroomRouter(new AdminClassroomService(knex)).router());
 app.use('/admin/api/instructor',new AdminInstructorRouter(new AdminInstructorService(knex)).router());
+app.use('/admin/api/pool',new AdminPoolRouter(new AdminPoolService(knex)).router());
 app.get("/", (request, response) => {
     response.render("index");
 });
