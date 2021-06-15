@@ -9,7 +9,7 @@
  
  <table class="table table-hover" width="100vh">
       <thead>
-        <tr class="highlight">
+        <tr id="highlight">
           <th scope="col">Date-June</th>
           <th scope="col">Training Boat, "The Black Pearl"</th>
           <th scope="col">Fun Diving Boat, "The Thousand Sunny"</th>
@@ -129,11 +129,11 @@
           <td>Sai Kung/08:45</td>
         </tr>
 
-        <tr class="highlight">
+        <tr id="highlight">
           <th scope="col">Date-July</th>
-          <th scope="col">Training Boat A</th>
-          <th scope="col">Fun Diving Boat B</th>
-          <th scope="col">Fun Diving Boat C</th>
+          <th scope="col">Training Boat, "The Black Pearl"</th>
+          <th scope="col">Fun Diving Boat, "The Thousand Sunny"</th>
+          <th scope="col">Fun Diving Boat, "Aquaholic"</th>
           <th scope="col">Fun Diving - Fee</th>
           <th scope="col">Night Dive-Fee (+HK$250)</th>
           <th scope="col">Departure Time-Pier</th>
@@ -336,11 +336,11 @@
           <td></td>
           <td>Sai Kung/08:45</td>
         </tr>
-         <tr class="highlight01">
+         <tr id="highlight">
           <th scope="col">Date-August</th>
-          <th scope="col">Training Boat A</th>
-          <th scope="col">Fun Diving Boat B</th>
-          <th scope="col">Fun Diving Boat C</th>
+          <th scope="col">Training Boat, "The Black Pearl"</th>
+          <th scope="col">Fun Diving Boat, "The Thousand Sunny"</th>
+          <th scope="col">Fun Diving Boat, "Aquaholic"</th>
           <th scope="col">Fun Diving - Fee</th>
           <th scope="col">Night Dive-Fee (+HK$250)</th>
           <th scope="col">Departure Time-Pier</th>
@@ -452,9 +452,9 @@
     <dl>
         <dt class="crop">
           
-            <img class="pic" src="/img-course/saikung-pier.png" style="position:absolute; left:900px; bottom:330px;">
+            <img class="pic" src="/img-course/saikung-pier.png" style="position:absolute; left:860px; bottom:330px;">
             <div class="map-responsive"></div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1844.6290575976986!2d114.27371905794517!3d22.38162489632036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xec2b7a350d3eb444!2sSai%20Kung%20Public%20Pier!5e0!3m2!1sen!2shk!4v1623401285505!5m2!1sen!2shk" width="450" height="300" style="position:absolute; left:900px; bottom:20px;"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1844.6290575976986!2d114.27371905794517!3d22.38162489632036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xec2b7a350d3eb444!2sSai%20Kung%20Public%20Pier!5e0!3m2!1sen!2shk!4v1623401285505!5m2!1sen!2shk" width="450" height="300" style="position:absolute; left:860px; bottom:20px;"></iframe>
           </div>
         </dt>
     </dl>
@@ -462,23 +462,23 @@
 
 {{!-- /*form*/ --}}
   <div class="funDiving_form">  
-  <form id="contact" action="" method="post">
+  <form id="contact" action="mailto:bubblesdiving.hk@gmail.com" method="post" enctype="text/plain">
     <h3>Contact Form</h3>
     <h4>Contact us for reservation</h4>
     <fieldset>
-      <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+      <input placeholder="Your name" type="text" name="name" tabindex="1" required autofocus>
     </fieldset>
     <fieldset>
-      <input placeholder="Your Email Address" type="email" tabindex="2" required>
+      <input placeholder="Your Email Address" name="email" type="email" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+      <input placeholder="Your Phone Number" name="telephone" type="tel" tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Fun Dive, Boat B or Boat C" type="course" tabindex="4" required>
-    </fieldset>
+      <input placeholder="Fun Dive Boat, The Black Pearl or The Thousand Sunny" type="funDiving" tabindex="4" required>
+    </fieldset>     
     <fieldset>
-      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+      <textarea name="message" placeholder="Type your message here...." tabindex="5" required></textarea>
     </fieldset>
     <fieldset class="form-group row">
     <legend class="col-form-label col-sm-2 float-sm-left pt-0">Equipment</legend>

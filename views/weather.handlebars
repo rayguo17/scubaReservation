@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="css/weather.css">
+
+<div id="weatherContainer">
+
+<h1>Weather Hong Kong</h1>
+
+<div id="weather">
+
+  <!-- Code generated at https://WeatherWidget.io -->  
+<a class="weatherwidget-io" href="https://forecast7.com/en/22d40114d11/hong-kong/" data-label_1="Hong Kong" data-label_2="WEATHER" data-theme="orange" >Hong Kong WEATHER</a>
+
+</div>
+
+<div class="cancellation">
+<h4>Cancellation due to adverse weather.<h4></h4>
+<p>In case of typhoon signal No. 1, the Thunderstorm Warning , the Yellow Rainstorm Warning, the Red Rainstorm Warning is issued within 2 hours before departure, the trip will continue; HKD200.00 administrative fee applies for those are absent.</p>
+<p>In case of typhoon signal No. 3 or higher, the Red- or Black Rainstorm Warning is issued within 2 hours before departure, the trip will be cancelled and rescheduled. No administrative fee applies.</p>
+<p>In case of weather conditions get worse during the journey and that is not suitable for water and diving activities, The boat captain will decide to continue or cancel the journey. In case of cancellation, no re-fund applies.</p>
+</div> 
+
+
+
+
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
+</script>
+<!-- / Code generated at https://WeatherWidget.io --> 
+  
+
+
+<script>
+  $(document).ready(function() {
+
+    $.get("https://api.openweathermap.org/data/2.5/onecall?lat=22.302711&lon=114.177216&exclude=hourly,alerts,minutely,current&units=metric&appid=466d7bb25dc67fb9d5cca4af18b80e6b",
+
+      function(data) {
+          let array = data.daily;
+          for (let i = 0; i < array.length; i++) {
+              let temp = array[i].temp.day
+              let weather = array[i].weather[0].description
+              let timestamp = array[i].dt
+              
+                var xx = new Date();
+                xx.setTime(timestamp*1000);
+                
+                let toUTCString = xx.toUTCString()
+                let d = toUTCString.split('04:00:00 GMT')[0];
+
+                //let dayNo = xx.getDay(); // 0,1,2,3,4,5,6
+               // var dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; // sunday = 0, monday = 1, tuesday = 2,3,4,5,6
+
+              $("#weather").append(`<dt>${d} ${temp}°C ${weather}</dt>`)
+             
+
+          }
+      })
+  })
+</script>

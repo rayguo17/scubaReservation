@@ -1,4 +1,8 @@
 .localEquipmentContainer{
     /*background: chartreuse;*/
-    margin-top: 8em;
+    margin-top: 4em;
+}
+
+.equipmentHeading {
+    padding:50px;
 }
