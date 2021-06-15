@@ -90,6 +90,10 @@ app.get("/localDiveSites", (request, response) => {
   response.render("localDiveSites");
 });
 
+app.get("/weather", (request, response) => {
+  response.render("weather")
+})
+
 app.get("/pool", (request, response) => {
   response.render("pool");
 });

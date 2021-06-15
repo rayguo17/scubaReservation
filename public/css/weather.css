@@ -1,0 +1,40 @@
+#weatherContainer {
+    margin-top: 8em;
+}
+
+/* #weatherContainer { 
+  /* animation: responsive 
+  /* 15s infinite; */
+  animation-timing-function: ease-in-out;
+} */
+
+/* .weatherwidget {
+    height:500px;
+} */
+
+/* 0%, 100% {
+    width: 100%;
+  }@keyframes responsive {
+  
+  50% {
+    width: 110px;
+  }
+} */
+
+.weather-io{
+  margin-left: 100px;
+} 
+
+#weather {
+  background-image: linear-gradient(-225deg, #fffeff 0%, #d7fffe 100%);
+  font-family: "Quicksand", sans-serif;
+  padding: 50px
+}
+
+h1 {
+    margin-left: 50px;
+}
+
+.cancellation {
+    padding: 50px;
+}
