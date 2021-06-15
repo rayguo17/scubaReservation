@@ -88,6 +88,60 @@ class adminPoolRouter{
                 console.log('getting pool schedule by class course id',error);
             }
         })
+        router.get('/schedule/events',async(req,res)=>{
+            try {
+                let allSchedule = await this.service.getAllSchedule();
+                console.log('allSchedule',allSchedule);
+                let getInstructorPromises = [];
+                let getClassCoursePromises = [];
+                let getSchedulePromises = [];
+                for(let i=0;i<allSchedule.length;i++){
+                    getSchedulePromises.push(this.service.getScheduleById(allSchedule[i].schedule_id));
+                }
+                let scheduleResults = await Promise.all(getSchedulePromises);
+                console.log('scheduleResults',scheduleResults);
+                for(let i=0;i<scheduleResults.length;i++){
+                    getInstructorPromises.push(this.service.getInstructorName(scheduleResults[i][0].instructor_id));
+                    getClassCoursePromises.push(this.service.getClassCourseById(scheduleResults[i][0].class_course_id));
+                }
+                let getInstuctorResult = await Promise.all(getInstructorPromises);
+                let getClassCourseResult = await Promise.all(getClassCoursePromises);
+                console.log('getInstructorResult', getInstuctorResult);
+                console.log('getclassCourseResult', getClassCourseResult);
+                let result = [];
+                for (let i = 0; i < allSchedule.length; i++) {
+                    let bookingDate = new Date(allSchedule[i].booking_date);
+                    bookingDate.setDate(bookingDate.getDate() + 1);
+                    let startDate = new Date(getClassCourseResult[i][0].start_date);
+                    startDate.setDate(startDate.getDate() + 1);
+                    let newEvent = {
+                        booking_date: bookingDate,
+                        booking_session: allSchedule[i].booking_session,
+                        pool_id: allSchedule[i].pool_id,
+                        class_course_id: getClassCourseResult[i][0].id,
+                        instructor_name: getInstuctorResult[i][0].full_name,
+                        course_id: getClassCourseResult[i][0].course_id,
+                        booking_id: allSchedule[i].id,
+                        start_date: startDate
+                    }
+                    result.push(newEvent);
+                }
+                console.log('formatted Result', result);
+                res.send(result);
+            } catch (error) {
+                console.log('get pool events',error);
+            }
+        })
+        router.delete('/schedule',async(req,res)=>{
+            try {
+                console.log(req.body);
+                let result = await this.service.deleteSchedule(req.body.bookingId);
+                console.log('delete', result);
+                res.send('done');
+            } catch (error) {
+                console.log('delete pool schedule',error);
+            }
+        })
 
 
 

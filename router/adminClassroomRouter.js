@@ -30,7 +30,7 @@ class adminClassroomRouter {
                     getSchedulePromises.push(this.service.getScheduleById(allSchedule[i].schedule_id));
                 }
                 let scheduleResutls = await Promise.all(getSchedulePromises);
-                console.log('scheduleResutls', scheduleResutls);
+                console.log('scheduleResults', scheduleResutls);
                 for (let i = 0; i < scheduleResutls.length; i++) {
                     getInstructorPromises.push(this.service.getInstructorName(scheduleResutls[i][0].instructor_id));
                     getClassCoursePromises.push(this.service.getClassCourseById(scheduleResutls[i][0].class_course_id));
