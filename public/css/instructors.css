@@ -11,6 +11,8 @@
   bottom: 45%;
   display: block;
   margin-top: 2em;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 #flip {
@@ -35,6 +37,7 @@
 }
 #flip div:first-child div {
   background: #4ec7f3;
+  
 }
 #flip div:last-child div {
   background: #dc143c;
@@ -67,6 +70,8 @@
   }
 }
 
+
+
 .rowInstructor {
   display: flex;
 }
@@ -76,7 +81,8 @@
   /* display: 20%; */
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 15px;
+  margin-left: 50px;
+  margin-right: 50px;
 
   background-repeat: no-repeat;
 }
@@ -98,4 +104,7 @@
 .flowChart img {
   width: 100%;
   height: 100%;
+  padding-right:100px;
+  padding-left: 100px;
+  padding-bottom: 25px;;
 }

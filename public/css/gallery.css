@@ -10,14 +10,15 @@
 }
 
 #galleryTop {
-  margin-top: 85em;
+  margin-top: 87em;
 }
 
 .gallery {
+  margin-top: 6em;
   justify-content: center;
   align-items: center;
   display: grid; 
-  grid-template-rows: repeat(5, 19vh);             
+  /* grid-template-rows: repeat(5, 19vh);              */
   grid-template-columns: repeat(4, 22.6vw);
   transition: all 0.3s ease(gravity);
   background-color: #82a6cb;
