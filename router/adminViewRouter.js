@@ -36,6 +36,9 @@ class AdminViewRouter {
         router.get('/pool',isLoggedIn,(req,res)=>{
 
             res.render('adminPool',{layout:'admin'});
+        });
+        router.get('/pool/gear',isLoggedIn,(req,res)=>{
+            res.render('adminPoolGear',{layout:'admin'});
         })
         router.post('/login',passport.authenticate('admin-login',{
             successRedirect:'/admin/course',
