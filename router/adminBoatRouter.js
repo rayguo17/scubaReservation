@@ -128,7 +128,7 @@ class adminBoatRouter {
                     for (let j = 0; j < boatList.length; j++) {
                         if (result[i].boat_id == boatList[j].id) {
                             delete result[i].boat_id;
-                            result[i].boat = boatList[j].name;
+                            result[i].item = boatList[j].name;
                         }
                     }
                 }

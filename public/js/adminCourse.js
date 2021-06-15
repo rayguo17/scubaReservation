@@ -120,6 +120,7 @@ let setupSideBar = ()=>{
     for(let i=0;i<allEl.length;i++){
         allEl[i].classList.remove('active');
     }
+    document.getElementById('Course').classList.add('active');
     document.getElementById('course-schedule').classList.add('active');
 }
 let loadCourse = ()=>{

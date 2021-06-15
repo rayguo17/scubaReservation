@@ -38,6 +38,18 @@ class adminPoolService{
     deleteSchedule(bookingId){
         return this.knex('pool_schedule').where('id',bookingId).del().returning('booking_date');
     }
+    getOrderByScheduleId(scheduleId){
+        return this.knex('course_order').where('course_schedule_id',scheduleId).select(['id']);
+    }
+    getStudentByOrderId(orderId){
+        return this.knex('student_order').where('course_order_id',orderId).select('student_id');
+    }
+    getStudentNameById(studentId){
+        return this.knex('student').where('id',studentId).select('full_name');
+    }
+    getStudentGearById(studentId){
+        return this.knex('student_gear').where('student_id',studentId).select('*');
+    }
 }
 
 module.exports = adminPoolService;

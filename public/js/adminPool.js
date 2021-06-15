@@ -9,7 +9,8 @@ let setupSideBar = ()=>{
     for(let i=0;i<allEl.length;i++){
         allEl[i].classList.remove('active');
     }
-    document.getElementById('pool').classList.add('active');
+    document.getElementById('pool-schedule').classList.add('active');
+    document.getElementById('Pool').classList.add('active');
 }
 let toopTipTemplate = Handlebars.compile(`
     
@@ -18,6 +19,9 @@ let toopTipTemplate = Handlebars.compile(`
     
 `)
 let setupCalendar = async ()=>{
+    //console.log('calendar browserify',testCalendar.sliceEvents);
+    //let customListPlugin = calendarPlugin();
+    //console.log('plugin',customListPlugin);
     let result = await getEvent();
     console.log(result);
     let resource = result[0].data;
@@ -27,17 +31,19 @@ let setupCalendar = async ()=>{
     console.log('formatted events',events);
     var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            
             views:{
                 resourceTimelineFourDays:{
                     type:'resourceTimeline',
-                    duration:{days:4}
+                    duration:{days:4},
+                    buttonText: '4 day'
                 }
             },
             height: 850,
             headerToolbar: {
                 start: 'prev,next today',
                 center: 'title',
-                end: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
+                end: 'resourceTimelineFourDays,resourceTimelineWeek'
             },
             eventDidMount:function(info){
                 
@@ -182,3 +188,30 @@ const categories ={
     diver: '#28a745',
     specialty:'#ffc107'
 }
+
+let calendarPlugin = ()=>{
+    let customViewConfig = {
+        classNames:['custom-view'],
+        content: function(props) {
+
+            let segs = testCalendar.sliceEvents(props, true); // allDay=true
+            console.log('segs',segs);
+            console.log('props',props);
+            let html =
+              '<div class="view-title">' +
+                props.dateProfile.currentRange.start.toUTCString() +
+              '</div>' +
+              '<div class="view-events">' +
+                segs.length + ' events' +
+              '</div>'
+        
+            return { html: html }
+          }
+    }
+
+    return testCalendar.createPlugin({
+        views:{
+            custom:customViewConfig
+        }
+    });
+} 

@@ -141,6 +141,94 @@ class adminPoolRouter{
             } catch (error) {
                 console.log('delete pool schedule',error);
             }
+        });
+        router.get('/gear/events',async(req,res)=>{
+            try {
+                let allSchedule = await this.service.getAllSchedule();
+                let result = [];
+                console.log('all schedule',allSchedule);
+                let getOrderPromises = [];
+                let getSchedulePromises = [];
+                for(let i=0;i<allSchedule.length;i++){
+                    let schedule_id = allSchedule[i].schedule_id;
+                     getOrderPromises.push(this.service.getOrderByScheduleId(schedule_id));
+                    getSchedulePromises.push(this.service.getScheduleById(schedule_id));
+                }
+                let orderResult = await Promise.all(getOrderPromises);
+                let scheduleResults = await Promise.all(getSchedulePromises);
+                console.log('orderResult',orderResult);
+                console.log('scheduleResult',scheduleResults);
+                let getInstructorPromises = [];
+                let getClassCoursePromises = [];
+                for(let i=0;i<scheduleResults.length;i++){
+                    getInstructorPromises.push(this.service.getInstructorName(scheduleResults[i][0].instructor_id));
+                    getClassCoursePromises.push(this.service.getClassCourseById(scheduleResults[i][0].class_course_id));
+                }
+                let getInstuctorResult = await Promise.all(getInstructorPromises);
+                let getClassCourseResult = await Promise.all(getClassCoursePromises);
+                console.log('getInstructorResult', getInstuctorResult);
+                console.log('getclassCourseResult', getClassCourseResult);
+                let getStudentOrderPromises = [];
+                for(let i=0;i<orderResult.length;i++){
+                    for(let j=0;j<orderResult[i].length;j++){
+                        let orderId = orderResult[i][j].id;
+                        getStudentOrderPromises.push(this.service.getStudentByOrderId(orderId));
+                    }
+                }
+                let studentOrderResult = await Promise.all(getStudentOrderPromises);
+                console.log('studentOrderResult',studentOrderResult);
+                let getStudentNamePromises = [];
+                let getStudentGearsPromises = [];
+                for(let i=0;i<studentOrderResult.length;i++){
+                    for(let j =0;j<studentOrderResult[i].length;j++){
+                        let studentId = studentOrderResult[i][j].student_id;
+                        getStudentNamePromises.push(this.service.getStudentNameById(studentId));
+                        getStudentGearsPromises.push(this.service.getStudentGearById(studentId));
+                    }
+                }
+                let studentNameResult = await Promise.all(getStudentNamePromises);
+                let studentGearResult = await Promise.all(getStudentGearsPromises);
+                console.log('studentNameResult',studentNameResult);
+                console.log('studentGearResult',studentGearResult);
+                let flattenFlag = 0;
+                for(let i=0;i<allSchedule.length;i++){
+                    let newResult = {
+                        booking_session:allSchedule[i].booking_session,
+                        resourceId:allSchedule[i].pool_id,
+                        start:allSchedule[i].booking_date,
+                        course_id:getClassCourseResult[i][0].course_id,
+                        instructor_name:getInstuctorResult[i][0].full_name,
+                        students:[]
+                    }
+                    let studentList =[];
+                    for(let j =0;j<orderResult[i].length;j++){
+                        console.log('the same order',j);
+
+                        for(let k=0;k<studentOrderResult[i*orderResult[i].length+j].length;k++){
+                            console.log('most inner place',k,studentOrderResult[i*orderResult[i].length+j][k]);
+                            let formatStudent = {
+                                id:studentGearResult[flattenFlag][0].student_id,
+                                name:studentNameResult[flattenFlag][0].full_name,
+                                mask:studentGearResult[flattenFlag][0].mask,
+                                regulator:studentGearResult[flattenFlag][0].regulator,
+                                bcd:studentGearResult[flattenFlag][0].bcd,
+                                wetsuit:studentGearResult[flattenFlag][0].wetsuit,
+                                boots:studentGearResult[flattenFlag][0].boots,
+                                fins:studentGearResult[flattenFlag][0].fins,
+                                others:studentGearResult[flattenFlag][0].others
+                            }
+                            studentList.push(formatStudent);
+                            flattenFlag++;
+                        }
+                    }
+                    newResult.students=studentList;
+                    result.push(newResult);
+                }
+                console.log('summup',result);
+                res.send(result);
+            } catch (error) {
+                console.log('getting gear for pool events',error)
+            }
         })
 
 
